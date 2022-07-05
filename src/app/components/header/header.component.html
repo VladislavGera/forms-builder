@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Test App</span>
+
+  <div class="navigation">
+    <div class="example-button-row">
+      <a class="nav-link" href="#" [routerLink]="['/form']">
+        <button mat-button color="white">Form</button>
+      </a>
+
+      <a class="nav-link" href="#" [routerLink]="['/home']">
+        <button mat-button color="white">Home</button>
+      </a>
+    </div>
+  </div>
+
+  <span class="example-spacer"></span>
+
+  <button (click)="logOut()" mat-button color="white">LOG OUT</button>
+</mat-toolbar>

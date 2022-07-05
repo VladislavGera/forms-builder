@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "email": "vheranin@gmail.com",
+      "password": "$2a$10$jINYaxcKsUcR.j2XG8bSG.h1DKdibUhWovvCB3euW8LQ9nXOsbHpm",
+      "id": 1
+    },
+    {
+      "email": "VLAD@gmail.com",
+      "password": "$2a$10$yvjs5Au2dxYPJxrF2tpP3eMNE03XgcRzhjvqStMClHBhahY5aWkTW",
+      "id": 2
+    },
+    {
+      "email": "vheranin1@gmail.com",
+      "password": "$2a$10$iocpgwEnE1aGwRj1FXF4Bu9Q/8cn61VYGrKmrvYzoY.8CgyBxBIvm",
+      "id": 3
+    }
+  ]
+}
