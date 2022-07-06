@@ -1,14 +1,13 @@
 .example-card {
   min-width: 300px;
   min-height: 300px;
-  background-color: rgb(255, 255, 255);
-  color: rgb(129, 129, 129);
+  background-color: #9e9e9e;
+  color: rgb(73, 73, 73);
   padding-bottom: 10px;
-  box-shadow: 0px 20px 30px rgb(153, 153, 153);
 }
 
 .main {
-  min-height: 990px;
+  min-height: 800px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -56,5 +55,9 @@ input.example-right-align {
 .link {
   padding-left: 7px;
   padding-right: 7px;
-  color: rgb(80, 135, 255);
+  color: rgb(81, 111, 177);
+}
+
+mat-form-field {
+  margin-right: 12px;
 }
