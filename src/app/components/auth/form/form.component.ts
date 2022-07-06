@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { UserState } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-form',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
-  @Input() userInputValue!: (data: any) => void;
+  @Input() userInputValue!: (data: UserState) => void;
 
   @Input() title!: string;
   inputValue!: () => void;
@@ -14,9 +15,9 @@ export class FormComponent implements OnInit {
   hide = true;
   email: string = '';
   password: string = '';
+  data!: UserState;
 
   getValue = () => {
-    // add class input value data 
     let data = { email: this.email, password: this.password };
 
     this.userInputValue(data);

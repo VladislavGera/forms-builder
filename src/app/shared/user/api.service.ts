@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { UserState } from 'src/app/models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -8,19 +9,26 @@ import { map } from 'rxjs/operators';
 export class ApiUserService {
   constructor(private http: HttpClient) {}
 
-  apiLoginUser(data: any) {
+  apiLoginUser(data: UserState) {
     return this.http.post<any>('http://localhost:3000/login', data).pipe(
-      map((res: any) => {
-        // return res;
-        // you are registred
-        // error heandler
-        return res;
-      })
+      map(
+        (res: any) => {
+          console.log(res, 'res');
+
+          // return res;
+          // you are registred
+          // error heandler
+          return res;
+        },
+        (err: any) => {
+          alert(err);
+        }
+      )
     );
   }
-  apiRegisterUser(data: any) {
+  apiRegisterUser(data: UserState) {
     return this.http.post<any>('http://localhost:3000/register', data).pipe(
-      map((res: any) => {
+      map(() => {
         // return res;
         // you are registred
         // error heandler

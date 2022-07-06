@@ -15,8 +15,8 @@ import { UserState } from 'src/app/models/user.model';
   styleUrls: ['../../../app.component.css'],
 })
 export class LoginComponent implements OnInit {
-  userLogin!: (args: any) => void;
-  setUser!: (args: any) => void;
+  userLogin!: (args: UserState) => void;
+  setUser!: (args: UserState) => void;
   user$!: Observable<UserState>;
   title: string = 'Login';
 
@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
         this.store.dispatch(setUser({ user }));
         localStorage.setItem('token', user.accessToken);
         this.router.navigate(['home']);
+      },(err:any)=> {
+        alert(err.error)
       });
     };
   }
