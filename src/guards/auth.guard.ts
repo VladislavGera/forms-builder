@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { AppState } from 'src/app/store/app.state';
-import { ApiUserService } from '../../../app/src/app/shared/user/api.service';
+import { ApiUserService } from '../app/shared/user/api.service';
 import { Store } from '@ngrx/store';
 import { UserState } from '../app/models/user.model';
 import { Observable } from 'rxjs';
