@@ -18,9 +18,9 @@ export class FormComponent implements OnInit {
   data!: UserState;
 
   getValue = () => {
-    let data = { email: this.email, password: this.password };
+    this.data = { email: this.email, password: this.password };
 
-    this.userInputValue(data);
+    this.userInputValue(this.data);
   };
 
   ngOnInit() {
