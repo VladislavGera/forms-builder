@@ -19,6 +19,11 @@
       "email": "vlad@gmail.com",
       "password": "$2a$10$eRstcpEIs9eYBab8kPvgQOsC8tr16HZT4/m9jqunaaKg58qLUtn3i",
       "id": 4
+    },
+    {
+      "email": "vheranin12@gmail.com",
+      "password": "$2a$10$iFFiIiY4vp5hidT78o7UAe5Zf85UpCG./hxvnnYJl4LY4RctLyQru",
+      "id": 5
     }
   ]
 }
