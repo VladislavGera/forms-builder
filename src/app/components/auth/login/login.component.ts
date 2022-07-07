@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { ApiUserService } from 'src/app/shared/user/api.service';
 import { AppState } from 'src/app/store/app.state';
 import { Router } from '@angular/router';
-import { setUser } from '../state/auth.action';
+import { authUser } from '../state/auth.action';
 import { Observable } from 'rxjs';
 import { UserState } from 'src/app/models/user.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   setUser!: (args: UserState) => void;
   user$!: Observable<UserState>;
   title: string = 'Login';
+  showAlert!: (args: any) => void;
 
   constructor(
     private store: Store<AppState>,
@@ -27,17 +28,20 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.showAlert = (message) => {
+      this._snackBar.open(message, 'Undo', {
+        duration: 4000,
+      });
+    };
     this.userLogin = (data) => {
       this.api.apiLoginUser(data).subscribe(
-        (user) => {
-          this.store.dispatch(setUser({ user }));
-          localStorage.setItem('token', user.accessToken);
+        (user: any) => {
+          this.store.dispatch(authUser({ email: user.email }));
+          localStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['home']);
         },
         (err: any) => {
-          this._snackBar.open(err.error, 'Undo', {
-            duration: 4000,
-          });
+          this.showAlert(err.error.message);
         }
       );
     };

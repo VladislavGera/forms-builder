@@ -18,8 +18,8 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   logOut = () => {
+    localStorage.removeItem('user');
     this.store.dispatch(logOutUser());
-    localStorage.removeItem('token');
     this.router.navigate(['login']);
   };
 

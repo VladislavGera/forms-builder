@@ -1,22 +1,20 @@
 import { createReducer, on } from '@ngrx/store';
-import {logOutUser, setUser } from './auth.action';
+import { logOutUser, authUser } from './auth.action';
 import { initialState } from './auth.state';
 
 const _userReducer = createReducer(
   initialState,
-  on(setUser, (state, action) => {
-    let user = action.user;
-
+  on(authUser, (state, action) => {
+    // add user model
     return {
       ...state,
-      user,
+      email: action.email,
     };
   }),
   on(logOutUser, (state) => {
-
     return {
       ...state,
-      user: {},
+      email: '',
     };
   })
 );

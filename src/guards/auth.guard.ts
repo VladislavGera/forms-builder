@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate, OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.auth = this.store.select(getUser);
+    // this.auth = this.store.select(getUser);
   }
 
   canActivate(
@@ -38,7 +38,7 @@ export class AuthGuard implements CanActivate, OnInit {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    let token: string | null = localStorage.getItem('token');
+    let token: string | null = localStorage.getItem('user');
 
     if (!!token) {
       return true;

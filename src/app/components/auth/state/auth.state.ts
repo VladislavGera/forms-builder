@@ -5,5 +5,5 @@ export interface User {
 }
 
 export const initialState = {
-  user: {},
+  email: "",
 };
