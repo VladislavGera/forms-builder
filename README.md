@@ -8,7 +8,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 ## Start json-server
 
-Command for start start  `json-server db.json -m ./node_modules/json-server-auth`
+Go to folder `./server`  Command run `npm run start-auth`
 
 ## Code scaffolding
 

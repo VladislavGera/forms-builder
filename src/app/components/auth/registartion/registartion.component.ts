@@ -13,6 +13,7 @@ export class RegistartionComponent implements OnInit {
   title: string = 'Registration';
   userRegistration!: (args: UserState) => void;
   saveUser!: (args: UserState) => void;
+  showAlert!: (args: any) => void;
 
   constructor(
     private api: ApiUserService,
@@ -21,15 +22,20 @@ export class RegistartionComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.showAlert = (message) => {
+      this._snackBar.open(message, 'Undo', {
+        duration: 4000,
+      });
+    };
+
     this.userRegistration = (data: UserState) => {
       this.api.apiRegisterUser(data).subscribe(
-        () => {
+        (res) => {
+          this.showAlert(res.message);
           this.router.navigate(['login']);
         },
         (err: any) => {
-          this._snackBar.open(err.error, 'Undo', {
-            duration: 4000,
-          });
+          this.showAlert(err.error.message);
         }
       );
     };
