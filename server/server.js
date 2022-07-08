@@ -45,8 +45,7 @@ function validatorEmailAndPassword({ email, password }) {
 
 // Register New User
 server.post('/auth/register', (req, res) => {
-  console.log('register endpoint called; request body:')
-  console.log(req.body)
+
   const { email, password } = req.body
 
   if (!validatorEmailAndPassword({ email, password })) {
@@ -103,8 +102,7 @@ server.post('/auth/register', (req, res) => {
 
 // Login to one of the users from ./users.json
 server.post('/auth/login', (req, res) => {
-  console.log('login endpoint called; request body:')
-  console.log(req.body)
+
   const { email, password } = req.body
 
   if (!validatorEmailAndPassword({ email, password })) {
@@ -131,7 +129,7 @@ server.post('/auth/login', (req, res) => {
   }
 
   const token = createToken({ email, password })
-  console.log('Access Token:' + token)
+
   res.status(200).json({ token, user })
 })
 
@@ -166,5 +164,5 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
 server.use(router)
 
 server.listen(8000, () => {
-  console.log('Run Auth API Server')
+  console.log(`Run Auth API Server PORT 8000`)
 })

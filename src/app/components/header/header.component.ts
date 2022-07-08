@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { logOutUser } from '../auth/state/auth.action';
 import { AppState } from 'src/app/store/app.state';
 import { Router } from '@angular/router';
+import { getUser } from '../auth/state/auth.selectors';
 
 @Component({
   selector: 'app-header',
@@ -12,10 +13,9 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   inputValue: string = '';
 
-  constructor(
-    private store: Store<AppState>,
-    private router: Router
-  ) {}
+  @Input() email!: String;
+
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   logOut = () => {
     localStorage.removeItem('user');
