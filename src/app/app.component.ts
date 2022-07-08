@@ -14,7 +14,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   user!: SetUser;
-  auth!: Boolean | undefined
+  auth!: Boolean | undefined;
+  email!: String
   constructor(
     private store: Store<AppState>,
     private api: ApiUserService,
@@ -22,11 +23,12 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.store.select(getUser).subscribe((auth) => {
-       this.auth = auth.isAuth
+      this.auth = auth.isAuth;
+      this.email = auth.user.email
     });
 
-    
     this.api.authUser().subscribe(async (user) => {
       this.user = {
         email: user.eamil,
@@ -34,7 +36,7 @@ export class AppComponent implements OnInit {
       };
 
       await this.store.dispatch(authUser({ user }));
-      this.router.navigate(['home']);
+      this.router.navigate(['']);
     });
   }
 }

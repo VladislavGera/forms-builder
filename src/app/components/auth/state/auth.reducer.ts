@@ -5,7 +5,6 @@ import { initialState } from './auth.state';
 const _userReducer = createReducer(
   initialState,
   on(authUser, (state, action) => {
-    console.log("work")
     return {
       ...state,
       user: action.user,
@@ -13,7 +12,6 @@ const _userReducer = createReducer(
     };
   }),
   on(logOutUser, (state) => {
-    console.log("logIn");
     return {
       ...state,
       user: {},
