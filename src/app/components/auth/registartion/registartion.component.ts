@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiUserService } from 'src/app/shared/user/api.service';
 import { Router } from '@angular/router';
-import { UserState } from 'src/app/models/user.model';
+import { inputValueState } from 'src/app/models/input.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -11,8 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class RegistartionComponent implements OnInit {
   title: string = 'Registration';
-  userRegistration!: (args: UserState) => void;
-  saveUser!: (args: UserState) => void;
+  userRegistration!: (args: inputValueState) => void;
+  saveUser!: (args: inputValueState) => void;
   showAlert!: (args: any) => void;
 
   constructor(
@@ -28,7 +28,7 @@ export class RegistartionComponent implements OnInit {
       });
     };
 
-    this.userRegistration = (data: UserState) => {
+    this.userRegistration = (data: inputValueState) => {
       this.api.apiRegisterUser(data).subscribe(
         (res) => {
           this.showAlert(res.message);

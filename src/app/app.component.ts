@@ -3,7 +3,9 @@ import { AppState } from 'src/app/store/app.state';
 import { Store } from '@ngrx/store';
 import { ApiUserService } from './shared/user/api.service';
 import { authUser } from './components/auth/state/auth.action';
-// import { getUser } from './components/auth/state/auth.selectors';
+import { getUser } from './components/auth/state/auth.selectors';
+import { SetUser } from './models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +13,28 @@ import { authUser } from './components/auth/state/auth.action';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  user!: any;
-  constructor(private store: Store<AppState>, private api: ApiUserService) {}
+  user!: SetUser;
+  auth!: Boolean | undefined
+  constructor(
+    private store: Store<AppState>,
+    private api: ApiUserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.api.authUser().subscribe((user) => {
-      this.store.dispatch(authUser({ email: user[0].email }));
+    this.store.select(getUser).subscribe((auth) => {
+       this.auth = auth.isAuth
     });
 
-    // / to do - add more felds and implement this function on guard routing
-    // this.store.select(getUser).subscribe((user) => {
-    //   this.user = user;
-    // });
+    
+    this.api.authUser().subscribe(async (user) => {
+      this.user = {
+        email: user.eamil,
+        id: user.id,
+      };
+
+      await this.store.dispatch(authUser({ user }));
+      this.router.navigate(['home']);
+    });
   }
 }

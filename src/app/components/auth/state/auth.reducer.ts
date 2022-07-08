@@ -5,16 +5,19 @@ import { initialState } from './auth.state';
 const _userReducer = createReducer(
   initialState,
   on(authUser, (state, action) => {
-    // add user model
+    console.log("work")
     return {
       ...state,
-      email: action.email,
+      user: action.user,
+      isAuth: true,
     };
   }),
   on(logOutUser, (state) => {
+    console.log("logIn");
     return {
       ...state,
-      email: '',
+      user: {},
+      isAuth: false,
     };
   })
 );

@@ -7,9 +7,10 @@ import {
   UrlTree,
 } from '@angular/router';
 import { AppState } from 'src/app/store/app.state';
-import { ApiUserService } from '../app/shared/user/api.service';
+// import { ApiUserService } from '../app/shared/user/api.service';
 import { Store } from '@ngrx/store';
-import { UserState } from '../app/models/user.model';
+import { inputValueState } from '../app/models/input.model';
+import { AuthUser } from 'src/app/models/auth.model';
 import { Observable } from 'rxjs';
 import { getUser } from '../app/components/auth/state/auth.selectors';
 
@@ -17,18 +18,15 @@ import { getUser } from '../app/components/auth/state/auth.selectors';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, OnInit {
-  user$!: Observable<UserState>;
-  auth!: UserState | {};
+  user$!: Observable<inputValueState>;
+  auth!: AuthUser;
 
   constructor(
     private store: Store<AppState>,
-    private api: ApiUserService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    // this.auth = this.store.select(getUser);
-  }
+  ngOnInit(): void {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -38,12 +36,15 @@ export class AuthGuard implements CanActivate, OnInit {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    let token: string | null = localStorage.getItem('user');
 
-    if (!!token) {
+    this.store.select(getUser).subscribe((auth) => {
+      this.auth = auth;
+    });
+
+    if (this.auth.isAuth) {
       return true;
     }
-    this.router.navigate(['']);
+      this.router.navigate(['']);
     return false;
   }
 }
