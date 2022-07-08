@@ -5,7 +5,7 @@ import { AppState } from 'src/app/store/app.state';
 import { Router } from '@angular/router';
 import { authUser } from '../state/auth.action';
 import { Observable } from 'rxjs';
-import { UserState } from 'src/app/models/user.model';
+import { inputValueState } from 'src/app/models/input.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -14,9 +14,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['../../../app.component.css'],
 })
 export class LoginComponent implements OnInit {
-  userLogin!: (args: UserState) => void;
-  setUser!: (args: UserState) => void;
-  user$!: Observable<UserState>;
+  userLogin!: (args: inputValueState) => void;
+  user$!: Observable<inputValueState>;
   title: string = 'Login';
   showAlert!: (args: any) => void;
 
@@ -35,10 +34,10 @@ export class LoginComponent implements OnInit {
     };
     this.userLogin = (data) => {
       this.api.apiLoginUser(data).subscribe(
-        (user: any) => {
-          this.store.dispatch(authUser({ email: user.email }));
-          localStorage.setItem('user', JSON.stringify(user));
+        async (res: any) => {
+          await this.store.dispatch(authUser({ user: res.user }));
           this.router.navigate(['home']);
+          localStorage.setItem('user', JSON.stringify(res));
         },
         (err: any) => {
           this.showAlert(err.error.message);

@@ -1,5 +1,4 @@
-export interface UserState {
-  email: String;
-  password: String;
-  id?: String;
+export interface SetUser {
+  email: String,
+  id: String
 }
