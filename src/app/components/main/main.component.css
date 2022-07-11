@@ -1,0 +1,25 @@
+.main {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  min-height: 1000px;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: rgb(231, 231, 231);
+}
+
+.select {
+  width: 10%;
+}
+
+.result {
+  width: 60%;
+  border-radius: 10px;
+  background-color: azure;
+}
+
+.builder {
+  min-width: 20%;
+  border-radius: 10px;
+  background-color: azure;
+}
