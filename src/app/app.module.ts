@@ -20,9 +20,11 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegistartionComponent } from './components/auth/registartion/registartion.component';
 import { SelectComponent } from './components/select/select.component';
 import { BuilderComponent } from './components/builder/builder.component';
+import { MainComponent } from './components/main/main.component';
+import { ResultComponent } from './components/result/result.component';
 
 @NgModule({
-  declarations: [ FormComponent, AppComponent, HeaderComponent, LoginComponent, RegistartionComponent, SelectComponent, BuilderComponent],
+  declarations: [ FormComponent, AppComponent, HeaderComponent, LoginComponent, RegistartionComponent, SelectComponent, BuilderComponent, MainComponent, ResultComponent],
   imports: [
     BrowserModule,
     MaterialExampleModule,

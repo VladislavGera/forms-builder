@@ -12,8 +12,7 @@ import { getUser } from '../auth/state/auth.selectors';
 })
 export class HeaderComponent implements OnInit {
   inputValue: string = '';
-
-  @Input() email!: String;
+  email!: String;
 
   constructor(private store: Store<AppState>, private router: Router) {}
 
@@ -23,5 +22,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['login']);
   };
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.select(getUser).subscribe((res) => {
+      this.email = res.user.email;
+    });
+  }
 }
