@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
       };
 
       await this.store.dispatch(authUser({ user }));
-      this.router.navigate(['']);
+      this.router.navigate(['main']);
     });
   }
 }

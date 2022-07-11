@@ -11,7 +11,7 @@ import { MaterialExampleModule } from '../../src/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule } from '@angular/forms';
-import { FormComponent }   from './components/auth/form/form.component'
+import { FormComponent } from './components/auth/form/form.component';
 import { FormBuilder } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
@@ -22,10 +22,30 @@ import { SelectComponent } from './components/select/select.component';
 import { BuilderComponent } from './components/builder/builder.component';
 import { MainComponent } from './components/main/main.component';
 import { ResultComponent } from './components/result/result.component';
+import { FormStyleComponent } from './components/form-style/form-style.component';
+import { ElementStyleComponent } from './components/element-style/element-style.component';
+// import {
+//   MAT_COLOR_FORMATS,
+//   NgxMatColorPickerModule,
+//   NGX_MAT_COLOR_FORMATS,
+// } from '@angular-material-components/color-picker';
 
 @NgModule({
-  declarations: [ FormComponent, AppComponent, HeaderComponent, LoginComponent, RegistartionComponent, SelectComponent, BuilderComponent, MainComponent, ResultComponent],
+  declarations: [
+    FormComponent,
+    AppComponent,
+    HeaderComponent,
+    LoginComponent,
+    RegistartionComponent,
+    SelectComponent,
+    BuilderComponent,
+    MainComponent,
+    ResultComponent,
+    FormStyleComponent,
+    ElementStyleComponent,
+  ],
   imports: [
+    // NgxMatColorPickerModule,
     BrowserModule,
     MaterialExampleModule,
     AppRoutingModule,
@@ -41,7 +61,10 @@ import { ResultComponent } from './components/result/result.component';
     StoreRouterConnectingModule.forRoot(),
     BrowserAnimationsModule,
   ],
-  providers: [FormBuilder],
+  providers: [
+    FormBuilder,
+    // { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
