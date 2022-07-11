@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       this.api.apiLoginUser(data).subscribe(
         async (res: any) => {
           await this.store.dispatch(authUser({ user: res.user }));
-          this.router.navigate(['style']);
+          this.router.navigate(['main']);
           localStorage.setItem('user', JSON.stringify(res));
         },
         (err: any) => {
