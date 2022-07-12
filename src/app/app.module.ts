@@ -24,11 +24,6 @@ import { MainComponent } from './components/main/main.component';
 import { ResultComponent } from './components/result/result.component';
 import { FormStyleComponent } from './components/form-style/form-style.component';
 import { ElementStyleComponent } from './components/element-style/element-style.component';
-// import {
-//   MAT_COLOR_FORMATS,
-//   NgxMatColorPickerModule,
-//   NGX_MAT_COLOR_FORMATS,
-// } from '@angular-material-components/color-picker';
 
 @NgModule({
   declarations: [
@@ -45,7 +40,6 @@ import { ElementStyleComponent } from './components/element-style/element-style.
     ElementStyleComponent,
   ],
   imports: [
-    // NgxMatColorPickerModule,
     BrowserModule,
     MaterialExampleModule,
     AppRoutingModule,
@@ -63,7 +57,6 @@ import { ElementStyleComponent } from './components/element-style/element-style.
   ],
   providers: [
     FormBuilder,
-    // { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
   ],
   bootstrap: [AppComponent],
 })

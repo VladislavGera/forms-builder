@@ -1,50 +1,19 @@
-<div class="select">
-  <h3 class="title">Input</h3>
-  <ul class="list">
-    <li class="list-item">
-      <mat-icon class="icon" aria-hidden="false" aria-label="Example home icon"
-        >home</mat-icon
+<div class="select" >
+  <h3 class="title">Elements</h3>
+  <ul
+    cdkDropList
+    (cdkDropListDropped)="drop($event)"
+    class="list"
+    [cdkDropListData]="elements"
+  >
+    <li *ngFor="let element of elements" class="list-item" cdkDrag>
+      <mat-icon
+        class="icon"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        >{{ element.icon }}</mat-icon
       >
-      <p class="text">Input</p>
-    </li>
-    <li class="list-item">
-      <mat-icon class="icon" aria-hidden="false" aria-label="Example home icon"
-        >edit_square</mat-icon
-      >
-      <p class="text">Textarea</p>
-    </li>
-    <li class="list-item">
-      <mat-icon class="icon" aria-hidden="false" aria-label="Example home icon"
-        >check_box_outline_blank</mat-icon
-      >
-      <p class="text">Button</p>
-    </li>
-    <li class="list-item">
-      <mat-icon class="icon" aria-hidden="false" aria-label="Example home icon"
-        >check_box</mat-icon
-      >
-      <p class="text">Checkbox</p>
-    </li>
-    <li class="list-item">
-      <mat-icon class="icon" aria-hidden="false" aria-label="Example home icon"
-        >fact_check</mat-icon
-      >
-      <p class="text">Select</p>
-    </li>
-  </ul>
-  <h3 class="title">Text</h3>
-  <ul class="list">
-    <li class="list-item">
-      <mat-icon class="icon" aria-hidden="false" aria-label="Example home icon"
-        >title</mat-icon
-      >
-      <p class="text">Title</p>
-    </li>
-    <li class="list-item">
-      <mat-icon class="icon" aria-hidden="false" aria-label="Example home icon"
-        >text_fields</mat-icon
-      >
-      <p class="text">Text</p>
+      <p class="text">{{ element.type }}</p>
     </li>
   </ul>
 </div>

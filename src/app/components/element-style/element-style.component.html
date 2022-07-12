@@ -2,49 +2,49 @@
   <h2>Element Style</h2>
 
   <p>Placeholder text</p>
-  <div>
-    <mat-form-field class="input" appearance="fill">
-      <mat-label>Enter placeholder text</mat-label>
-      <input matInput type="text" />
-    </mat-form-field>
-  </div>
+
+  <mat-form-field class="input" appearance="fill">
+    <mat-label>Enter placeholder text</mat-label>
+    <input matInput type="text" />
+  </mat-form-field>
+
   <p>Width</p>
-  <div>
-    <mat-form-field class="input" appearance="fill">
-      <mat-label>Enter element width</mat-label>
-      <input matInput type="number" />
-    </mat-form-field>
-  </div>
+
+  <mat-form-field class="input" appearance="fill">
+    <mat-label>Enter element width</mat-label>
+    <input matInput type="number" />
+  </mat-form-field>
+
   <p>Height</p>
-  <div>
-    <mat-form-field class="input" appearance="fill">
-      <mat-label>Enter element height</mat-label>
-      <input matInput type="number" />
-    </mat-form-field>
-  </div>
+
+  <mat-form-field class="input" appearance="fill">
+    <mat-label>Enter element height</mat-label>
+    <input matInput type="number" />
+  </mat-form-field>
+
   <p>Font size</p>
-  <div>
-    <mat-form-field class="input" appearance="fill">
-      <mat-label>Font size</mat-label>
-      <input matInput type="number" />
-    </mat-form-field>
-  </div>
+
+  <mat-form-field class="input" appearance="fill">
+    <mat-label>Font size</mat-label>
+    <input matInput type="number" />
+  </mat-form-field>
+
   <p>Font width</p>
-  <div>
-    <mat-form-field class="input" appearance="fill">
-      <mat-label>Font width</mat-label>
-      <input matInput type="number" />
-    </mat-form-field>
-  </div>
+
+  <mat-form-field class="input" appearance="fill">
+    <mat-label>Font width</mat-label>
+    <input matInput type="number" />
+  </mat-form-field>
+
   <p>Font color</p>
-  <div>
-    <mat-form-field class="input" appearance="fill">
-      <mat-label>Form color</mat-label>
-      <input matInput type="text" />
-    </mat-form-field>
-  </div>
+
+  <mat-form-field class="input" appearance="fill">
+    <mat-label>Input color</mat-label>
+    <input matInput type="color-picker" type="color" />
+  </mat-form-field>
+
   <p>Type</p>
-  <mat-form-field appearance="fill">
+  <mat-form-field class="input" appearance="fill">
     <mat-label>Select an option</mat-label>
     <mat-select>
       <mat-option>None</mat-option>
@@ -53,6 +53,12 @@
       <mat-option value="number">Number</mat-option>
     </mat-select>
   </mat-form-field>
+
+  <button class="button" mat-raised-button color="primary">
+    Submit element setting
+  </button>
+
+  <mat-divider></mat-divider>
 
   <h2>Border Style</h2>
 
@@ -64,7 +70,7 @@
     </mat-form-field>
   </div>
   <p>Border type</p>
-  <mat-form-field appearance="fill">
+  <mat-form-field class="input" appearance="fill">
     <mat-label>Border type</mat-label>
     <mat-select>
       <mat-option>None</mat-option>
@@ -77,19 +83,11 @@
   <p>Border color</p>
   <div>
     <mat-form-field class="input" appearance="fill">
-      <mat-label>Border color</mat-label>
-      <input matInput type="text" />
+      <mat-label>Input color</mat-label>
+      <input matInput type="color-picker" type="color" />
     </mat-form-field>
   </div>
+  <button class="button" mat-raised-button color="primary">
+    Submit border setting
+  </button>
 </mat-card>
-
-<!--
-Placeholder text
-Width
-Height
-Required
-Border Style
-Font Size Input
-Font Weight Select
-Type
-Color Input RGB-->
