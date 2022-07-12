@@ -37,11 +37,6 @@ export class MainComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
     }
   }
 
