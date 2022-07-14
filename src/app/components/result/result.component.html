@@ -1,19 +1,8 @@
 <div class="main">
-  <mat-card  >
-    <ul
-      cdkDropList
-      (cdkDropListDropped)="drop($event)"
-      [cdkDropListData]="currentElements"
-      class="list"
-    >
+  <mat-card>
+    <ul cdkDropList (cdkDropListDropped)="drop($event)" class="list">
       <li *ngFor="let element of currentElements" class="list-item">
-        <mat-icon
-          class="icon"
-          aria-hidden="false"
-          aria-label="Example home icon"
-          >{{ element.icon }}</mat-icon
-        >
-        <p class="text">{{ element.type }}</p>
+        <p class="text">{{ element }}</p>
       </li>
     </ul>
   </mat-card>

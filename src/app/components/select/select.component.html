@@ -4,7 +4,6 @@
     cdkDropList
     (cdkDropListDropped)="drop($event)"
     class="list"
-    [cdkDropListData]="elements"
   >
     <li *ngFor="let element of elements" class="list-item" cdkDrag>
       <mat-icon

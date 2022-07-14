@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
+  CdkDragDrop
 } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -11,7 +9,7 @@ import {
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
-  elements = [
+  elements: any[] = [
     { type: 'input', icon: 'input' },
     { type: 'textarea', icon: 'edit_square' },
     { type: 'button', icon: 'check_box_outline_blank' },
@@ -21,26 +19,16 @@ export class MainComponent implements OnInit {
     { type: 'title', icon: 'title' },
   ];
 
-  currentElements = [];
+  drop!: (args: CdkDragDrop<string[]>) => void;
 
-  drop(event: CdkDragDrop<any[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
-  }
+  currentElements: any[] = [];
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.drop = (event: CdkDragDrop<string[]>) => {
+      event.previousContainer === event.container ||
+        this.currentElements.push(this.elements[event.previousIndex].type);
+    };
+  }
 }
