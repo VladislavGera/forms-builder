@@ -1,1 +1,103 @@
-{"users":[{"id":"0cafbc1d-edae-4f76-9470-408f75ac7361","email":"vheranin@gmail.com","password":"vlad123"},{"id":"2f0a82c0-be33-46d4-834f-097eb0742de2","email":"dima@gmail.com","password":"123456"}]}
+{
+  "users": [
+    {
+      "id": "0cafbc1d-edae-4f76-9470-408f75ac7361",
+      "email": "vheranin@gmail.com",
+      "password": "vlad123"
+    },
+    {
+      "id": "2f0a82c0-be33-46d4-834f-097eb0742de2",
+      "email": "dima@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "6d92b8fa-bbee-4a52-9ebd-46bc19d4597c",
+      "email": "vheranin1@gmail.co",
+      "password": "vheranin1@gmail.co"
+    },
+    {
+      "id": "634ee5ef-0eb5-46b8-96ac-b6f110bfed80",
+      "email": "vovavova@gmail.com",
+      "password": "vovavova@gmail.com"
+    },
+    {
+      "id": "c31aecdb-57f6-406c-8128-98f9b79f6d37",
+      "email": "vheranin12@gmail.com",
+      "password": "vheranin12@gmail.com"
+    },
+    {
+      "id": "77e15280-f951-40d7-8ae7-92cfd2832773",
+      "email": "vhern@gmail.com",
+      "password": "vhern@gmail.com"
+    },
+    {
+      "id": "cea10ecf-0d48-4e56-8af9-a309344be681",
+      "email": "vlad@gmail.com",
+      "password": "password1"
+    },
+    {
+      "id": "2dc5b0d2-8478-4b61-a920-46ed13f97bf2",
+      "email": "vlsad@gmail.com",
+      "password": "passsword1"
+    }
+  ],
+  "elements": [
+    {
+      "id": 1,
+      "label": "Input",
+      "Placeholder": "Input",
+      "type": "input",
+      "validators": {
+        "required": true,
+        "minLength": 10
+      },
+      "style": {
+        "width": 20,
+        "height": 20,
+        "color": "aqua",
+        "font-size": 20,
+        "font-weight": 100
+      },
+      "border-style": {
+        "width": 20,
+        "color": "red",
+        "type": "solid"
+      }
+    },
+    {
+      "id": 2,
+      "text": "text",
+      "type": "text",
+      "style": {
+        "width": 20,
+        "height": 20,
+        "color": "aqua",
+        "font-size": 20,
+        "font-weight": 100
+      },
+      "border-style": {
+        "width": 20,
+        "color": "red",
+        "type": "solid"
+      }
+    },
+    {
+      "id": 3,
+      "label": "select",
+      "placeholder": "select",
+      "type": "select",
+      "values": [
+        { "id": 1, "value": "value1" },
+        { "id": 2, "value": "value2" },
+        { "id": 3, "value": "value3" }
+      ],
+      "style": {
+        "width": 20,
+        "height": 20,
+        "color": "aqua",
+        "font-size": 20,
+        "font-weight": 100
+      }
+    }
+  ]
+}

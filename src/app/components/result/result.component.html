@@ -1,18 +1,11 @@
 <div class="main">
   <mat-card>
+    <!-- // todo click on item set current item id -->
     <ul cdkDropList (cdkDropListDropped)="drop($event)" class="list">
-      <li *ngFor="let element of currentElements" class="list-item">
-        <p class="text">{{ element }}</p>
+      <li *ngFor="let element of currentElements" class="list-item">  
+          <!-- <input [type]="element.type"  [placeholder]="element.type" > -->
       </li>
     </ul>
+    <!-- // todo block delete item  -->
   </mat-card>
-  <div class="buttons">
-    <button
-      mat-fab
-      color="primary"
-      aria-label="Example icon button with a delete icon"
-    >
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
 </div>

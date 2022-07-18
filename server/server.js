@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const { v4: uuidv4 } = require('uuid')
 
 const server = jsonServer.create()
-const router = jsonServer.router('./users.json')
+const users = jsonServer.router('./users.json')
 const userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'))
 
 server.use(bodyParser.urlencoded({ extended: true }))
@@ -45,7 +45,6 @@ function validatorEmailAndPassword({ email, password }) {
 
 // Register New User
 server.post('/auth/register', (req, res) => {
-
   const { email, password } = req.body
 
   if (!validatorEmailAndPassword({ email, password })) {
@@ -102,7 +101,6 @@ server.post('/auth/register', (req, res) => {
 
 // Login to one of the users from ./users.json
 server.post('/auth/login', (req, res) => {
-
   const { email, password } = req.body
 
   if (!validatorEmailAndPassword({ email, password })) {
@@ -125,7 +123,7 @@ server.post('/auth/login', (req, res) => {
 
   const user = {
     email: getUser[0].email,
-    id: getUser[0].id
+    id: getUser[0].id,
   }
 
   const token = createToken({ email, password })
@@ -161,7 +159,10 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
   }
 })
 
-server.use(router)
+
+server.use(users)
+
+
 
 server.listen(8000, () => {
   console.log(`Run Auth API Server PORT 8000`)

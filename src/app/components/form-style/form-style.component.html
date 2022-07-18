@@ -5,25 +5,35 @@
 
   <mat-form-field class="input" appearance="fill">
     <mat-label>Enter element width</mat-label>
-    <input matInput type="number" />
+    <input matInput [(ngModel)]="width" type="number" />
   </mat-form-field>
 
   <p>Height</p>
 
   <mat-form-field class="input" appearance="fill">
     <mat-label>Enter element height</mat-label>
-    <input matInput type="number" />
+    <input matInput [(ngModel)]="height" type="number" />
   </mat-form-field>
 
   <p>Background form color</p>
 
   <mat-form-field class="input" appearance="fill">
     <mat-label>Input color</mat-label>
-    <input matInput type="color-picker" type="color" />
+    <input
+      matInput
+      [(ngModel)]="backGroundColor"
+      type="color-picker"
+      type="color"
+    />
   </mat-form-field>
 
-  <button class="button" mat-raised-button color="primary">
-    Submit border setting
+  <button
+    (click)="getFormStyle()"
+    class="button"
+    mat-raised-button
+    color="primary"
+  >
+    Submit form style
   </button>
 
   <mat-divider></mat-divider>
@@ -34,13 +44,16 @@
 
   <mat-form-field class="input" appearance="fill">
     <mat-label>Border width</mat-label>
-    <input matInput type="number" />
+    <input matInput [(ngModel)]="borderWidth" type="number" />
   </mat-form-field>
 
   <p>Border type</p>
-  <mat-form-field class="input" appearance="fill">
+  <mat-form-field
+    class="input"
+    appearance="fill"
+  >
     <mat-label>Border type</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]="borderType">
       <mat-option>None</mat-option>
       <mat-option value="solid">Solid</mat-option>
       <mat-option value="dashed">Dashed</mat-option>
@@ -52,10 +65,20 @@
 
   <mat-form-field class="input" appearance="fill">
     <mat-label>Input color</mat-label>
-    <input matInput type="color-picker" type="color" />
+    <input
+      matInput
+      [(ngModel)]="borderColor"
+      type="color-picker"
+      type="color"
+    />
   </mat-form-field>
 
-  <button class="button" mat-raised-button color="primary">
+  <button
+    (click)="getBorderStyle()"
+    class="button"
+    mat-raised-button
+    color="primary"
+  >
     Submit border setting
   </button>
 </mat-card>
