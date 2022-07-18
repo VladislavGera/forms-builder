@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  CdkDragDrop
-} from '@angular/cdk/drag-drop';
+import { v4 as uuidv4 } from 'uuid';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-main',
@@ -9,6 +8,16 @@ import {
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
+  drop!: (args: CdkDragDrop<string[]>) => void;
+  setStyleElements!: (data: any) => void;
+  setBorderElements!: (data: any) => void;
+  setStyleForm!: (data: any) => void;
+  setBorderForm!: (data: any) => void;
+  setIdElemtn!: (id: String) => void;
+  setIdForm!: (id: String) => void;
+  elementId!: String;
+  formId!: String;
+  currentElements: any[] = [];
   elements: any[] = [
     { type: 'input', icon: 'input' },
     { type: 'textarea', icon: 'edit_square' },
@@ -16,19 +25,33 @@ export class MainComponent implements OnInit {
     { type: 'checkbox', icon: 'check_box' },
     { type: 'select', icon: 'fact_check' },
     { type: 'text', icon: 'text_fields' },
-    { type: 'title', icon: 'title' },
   ];
-
-  drop!: (args: CdkDragDrop<string[]>) => void;
-
-  currentElements: any[] = [];
 
   constructor() {}
 
   ngOnInit(): void {
     this.drop = (event: CdkDragDrop<string[]>) => {
       event.previousContainer === event.container ||
-        this.currentElements.push(this.elements[event.previousIndex].type);
+        this.currentElements.push({
+          type: this.elements[event.previousIndex].type,
+          id: uuidv4(),
+        });
+    };
+
+    this.setStyleElements = (data) => {
+      console.log(data);
+    };
+
+    this.setBorderElements = (data) => {
+      console.log(data);
+    };
+
+    this.setStyleForm = (data) => {
+      console.log(data);
+    };
+
+    this.setBorderForm = (data) => {
+      console.log(data);
     };
   }
 }
