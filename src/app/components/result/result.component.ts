@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ResultComponent implements OnInit {
   @Input() currentElements: any;
   @Input() drop: any;
+  @Input() setIdElement: any;
 
   constructor() {}
 

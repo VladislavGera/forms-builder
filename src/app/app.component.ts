@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/store/app.state';
 import { Store } from '@ngrx/store';
-import { ApiUserService } from './shared/user/api.service';
+import { ApiUserService } from './shared/api.service';
 import { authUser } from './components/auth/state/auth.action';
 import { SetUser } from './models/user.model';
 import { Router } from '@angular/router';
@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   user!: SetUser;
-
 
   constructor(
     private store: Store<AppState>,

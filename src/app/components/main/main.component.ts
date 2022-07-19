@@ -13,18 +13,18 @@ export class MainComponent implements OnInit {
   setBorderElements!: (data: any) => void;
   setStyleForm!: (data: any) => void;
   setBorderForm!: (data: any) => void;
-  setIdElemtn!: (id: String) => void;
+  setIdElement!: (id: String) => void;
   setIdForm!: (id: String) => void;
   elementId!: String;
   formId!: String;
   currentElements: any[] = [];
   elements: any[] = [
-    { type: 'input', icon: 'input' },
-    { type: 'textarea', icon: 'edit_square' },
-    { type: 'button', icon: 'check_box_outline_blank' },
-    { type: 'checkbox', icon: 'check_box' },
-    { type: 'select', icon: 'fact_check' },
-    { type: 'text', icon: 'text_fields' },
+    { type: 'input', icon: 'input', label: 'input' },
+    { type: 'textarea', icon: 'edit_square', label: 'textarea' },
+    { type: 'button', icon: 'check_box_outline_blank', label: 'button' },
+    { type: 'checkbox', icon: 'check_box', label: 'checkbox' },
+    { type: 'select', icon: 'fact_check', label: 'select' },
+    { type: 'text', icon: 'text_fields', label: 'text' },
   ];
 
   constructor() {}
@@ -35,6 +35,7 @@ export class MainComponent implements OnInit {
         this.currentElements.push({
           type: this.elements[event.previousIndex].type,
           id: uuidv4(),
+          label: this.elements[event.previousIndex].label,
         });
     };
 
@@ -52,6 +53,10 @@ export class MainComponent implements OnInit {
 
     this.setBorderForm = (data) => {
       console.log(data);
+    };
+
+    this.setIdElement = (elementId) => {
+      this.elementId = elementId;
     };
   }
 }
