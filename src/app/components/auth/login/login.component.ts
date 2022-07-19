@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ApiUserService } from 'src/app/shared/user/api.service';
+import { ApiUserService } from 'src/app/shared/api.service';
 import { AppState } from 'src/app/store/app.state';
 import { Router } from '@angular/router';
 import { authUser } from '../state/auth.action';

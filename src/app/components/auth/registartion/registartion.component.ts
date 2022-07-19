@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiUserService } from 'src/app/shared/user/api.service';
 import { Router } from '@angular/router';
 import { inputValueState } from 'src/app/models/input.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ApiUserService } from 'src/app/shared/api.service';
 
 @Component({
   selector: 'app-registartion',

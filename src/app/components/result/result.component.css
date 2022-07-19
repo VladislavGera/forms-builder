@@ -12,8 +12,8 @@
 
 .list-item {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-direction: column;
   font-weight: 300;
   max-width: 100%;
@@ -40,4 +40,17 @@
 
 .icons_active {
   display: none;
+}
+
+.form{
+  background-color: aqua;
+  width: 300px;
+  border: 30px dashed rgb(255, 65, 65);
+  height: 600px;
+}
+
+mat-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

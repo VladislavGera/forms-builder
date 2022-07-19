@@ -1,11 +1,78 @@
 <div class="main">
   <mat-card>
-    <!-- // todo click on item set current item id -->
-    <ul cdkDropList (cdkDropListDropped)="drop($event)" class="list">
-      <li *ngFor="let element of currentElements" class="list-item">  
-          <!-- <input [type]="element.type"  [placeholder]="element.type" > -->
-      </li>
-    </ul>
+    <div class="form">
+      <h1>Title</h1>
+      <!-- // todo click on item set current item id -->
+      <ul cdkDropList (cdkDropListDropped)="drop($event)" class="list">
+        <li
+          *ngFor="let element of currentElements"
+          (click)="setIdElement(element.id)"
+          class="list-item"
+        >
+          <div [ngSwitch]="element.type">
+            <!-- INPUT -->
+            <div *ngSwitchCase="'input'">
+              <div>
+                <p>
+                  {{ element.label }}
+                </p>
+              </div>
+              <div>
+                <input type="text" />
+              </div>
+            </div>
+            <!-- TEXTAREA -->
+            <div *ngSwitchCase="'textarea'">
+              <div>
+                <p [ngStyle]="element.style">
+                  {{ element.label }}
+                </p>
+              </div>
+              <div>
+                <textarea [ngStyle]="element.style" id="w3review"> </textarea>
+              </div>
+            </div>
+            <!-- CHECKBOX -->
+            <div *ngSwitchCase="'checkbox'">
+              <div>
+                <input [ngStyle]="element.style" [type]="element.type" />
+                <span [ngStyle]="element.style">
+                  {{ element.label }}
+                </span>
+              </div>
+            </div>
+            <!-- SELECT -->
+            <div *ngSwitchCase="'select'">
+              <div>
+                <p [ngStyle]="element.style">
+                  {{ element.label }}
+                </p>
+              </div>
+              <div>
+                <select name="select">
+                  <option value="value1">value1</option>
+                  <option value="value2">value2</option>
+                  <option value="value3">value3</option>
+                  <!-- <option *ngFor="let val of element.values.split(',')">
+                  {{ val }}
+                </option> -->
+                </select>
+              </div>
+            </div>
+            <!-- BUTTON -->
+            <div *ngSwitchCase="'button'">
+              <button>{{ element.label }}</button>
+            </div>
+            <!-- TEXT -->
+            <div *ngSwitchCase="'text'">
+              <p>
+                {{ element.type }}
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
     <!-- // todo block delete item  -->
   </mat-card>
 </div>
