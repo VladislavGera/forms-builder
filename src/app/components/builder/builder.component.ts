@@ -7,7 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class BuilderComponent implements OnInit {
   @Input() setStyleElements: any;
-  @Input() setBorderElements: any;
   @Input() setStyleForm: any;
   @Input() setBorderForm: any;
 

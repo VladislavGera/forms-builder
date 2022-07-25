@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { getForm } from '../form-style/state/form.selectors';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-result',
@@ -8,9 +11,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ResultComponent implements OnInit {
   @Input() currentElements: any;
   @Input() drop: any;
-  @Input() setIdElement: any;
+  @Input() getCurrentElement: any;
+  @Input() elementId: any;
+  @Input() deleteElement: any
 
-  constructor() {}
+  formStyle!: any;
 
-  ngOnInit(): void {}
+  constructor(private store: Store<AppState>) {}
+
+  ngOnInit(): void {
+    this.store.select(getForm).subscribe((res) => {
+      this.formStyle = res;
+    });
+  }
 }

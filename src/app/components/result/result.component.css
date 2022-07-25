@@ -11,22 +11,27 @@
 }
 
 .list-item {
+  box-sizing: border-box;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
   font-weight: 300;
   max-width: 100%;
-  border-radius: 10px;
   box-sizing: border-box;
   margin-bottom: 10px;
   cursor: pointer;
   transition: 0.5s;
 }
 
+.list-item_active {
+    border: rgb(89, 89, 255) dotted 1px;
+}
+
 .list-item:hover {
-  background-color: rgb(208, 238, 255);
+  background-color: #cad4ff49;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .border {
@@ -42,15 +47,15 @@
   display: none;
 }
 
-.form{
-  background-color: aqua;
-  width: 300px;
-  border: 30px dashed rgb(255, 65, 65);
-  height: 600px;
-}
-
-mat-card{
+mat-card {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.buttons-block{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }

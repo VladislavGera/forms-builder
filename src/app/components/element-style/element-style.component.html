@@ -1,58 +1,120 @@
 <mat-card>
   <h2>Element Style</h2>
 
-  <p>Placeholder text</p>
+  <div [hidden]="label === undefined">
+    <p>Placeholder text</p>
 
-  <mat-form-field class="input" appearance="fill">
-    <mat-label>Enter placeholder text</mat-label>
-    <input matInput [(ngModel)]="placeholder" type="text" />
-  </mat-form-field>
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Enter placeholder text</mat-label>
+      <input matInput [(ngModel)]="label" type="text" />
+    </mat-form-field>
+  </div>
 
-  <p>Width</p>
+  <div [hidden]="content === undefined">
+    <p>Content</p>
 
-  <mat-form-field class="input" appearance="fill">
-    <mat-label>Enter element width</mat-label>
-    <input matInput [(ngModel)]="width" type="number" />
-  </mat-form-field>
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Enter content</mat-label>
+      <input matInput [(ngModel)]="content" type="text" />
+    </mat-form-field>
+  </div>
 
-  <p>Height</p>
+  <div [hidden]="width === undefined">
+    <p>Width</p>
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Enter element width</mat-label>
+      <input matInput [(ngModel)]="width" type="number" />
+    </mat-form-field>
+  </div>
 
-  <mat-form-field class="input" appearance="fill">
-    <mat-label>Enter element height</mat-label>
-    <input matInput [(ngModel)]="height" type="number" />
-  </mat-form-field>
+  <div [hidden]="height === undefined">
+    <p>Height</p>
 
-  <p>Font size</p>
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Enter element height</mat-label>
+      <input matInput [(ngModel)]="height" type="number" />
+    </mat-form-field>
+  </div>
 
-  <mat-form-field class="input" appearance="fill">
-    <mat-label>Font size</mat-label>
-    <input matInput [(ngModel)]="fontSize" type="number" />
-  </mat-form-field>
+  <div [hidden]="fontSize === undefined">
+    <p>Font size</p>
 
-  <p>Font width</p>
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Font size</mat-label>
+      <input matInput [(ngModel)]="fontSize" type="number" />
+    </mat-form-field>
+  </div>
 
-  <mat-form-field class="input" appearance="fill">
-    <mat-label>Select an weight</mat-label>
-    <mat-select [(ngModel)]="fontWidth">
-      <mat-option>None</mat-option>
-      <mat-option value="normal">Normal</mat-option>
-      <mat-option value="bold">Bold</mat-option>
-      <mat-option value="lighter">Lighter</mat-option>
-      <mat-option value="bolder">Bolder</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div [hidden]="fontWidth === undefined">
+    <p>Font width</p>
 
-  <p>Font color</p>
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Select an weight</mat-label>
+      <mat-select [(ngModel)]="fontWidth">
+        <mat-option>None</mat-option>
+        <mat-option value="normal">Normal</mat-option>
+        <mat-option value="bold">Bold</mat-option>
+        <mat-option value="lighter">Lighter</mat-option>
+        <mat-option value="bolder">Bolder</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-  <mat-form-field class="input" appearance="fill">
-    <mat-label>Input color</mat-label>
-    <input
-      matInput
-      [(ngModel)]="backGroundColor"
-      type="color-picker"
-      type="color"
-    />
-  </mat-form-field>
+  <div [hidden]="position === undefined">
+    <p>Element position</p>
+
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Element position</mat-label>
+      <mat-select>
+        <mat-option>None</mat-option>
+        <mat-option value="flex-start">Left</mat-option>
+        <mat-option value="flex-end">Right</mat-option>
+        <mat-option value="center">Center</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div [hidden]="background === undefined">
+    <p>Background color</p>
+
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Background color</mat-label>
+      <input
+        matInput
+        [(ngModel)]="background"
+        type="color-picker"
+        type="color"
+      />
+    </mat-form-field>
+  </div>
+
+  <div [hidden]="lableColor === undefined">
+    <p>Font label color</p>
+
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Input color</mat-label>
+      <input
+        matInput
+        [(ngModel)]="lableColor"
+        type="color-picker"
+        type="color"
+      />
+    </mat-form-field>
+  </div>
+
+  <div [hidden]="textColor === undefined">
+    <p>Font text color</p>
+
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Input color</mat-label>
+      <input
+        matInput
+        [(ngModel)]="textColor"
+        type="color-picker"
+        type="color"
+      />
+    </mat-form-field>
+  </div>
 
   <button
     (click)="getElementStyle()"
@@ -64,45 +126,66 @@
   </button>
 
   <mat-divider></mat-divider>
+  <div [hidden]="values === undefined">
+    <h2>Select Style</h2>
 
-  <h2>Border Style</h2>
+    <div *ngFor="let value of values">
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>{{ value.value }}</mat-label>
+        <div class="input-item">
+          <input [(ngModel)]="value.value" matInput type="text" />
+          <mat-icon>edit</mat-icon>
+          <mat-icon>delete</mat-icon>
+        </div>
+      </mat-form-field>
+    </div>
 
-  <p>Border width</p>
-  <div>
-    <mat-form-field class="input" appearance="fill">
-      <mat-label>Border width</mat-label>
-      <input matInput [(ngModel)]="borderWidth" type="number" />
-    </mat-form-field>
+    <div class="buttons-block">
+      <button mat-raised-button color="primary">Add select option</button>
+    </div>
+    <mat-divider></mat-divider>
   </div>
-  <p>Border type</p>
-  <mat-form-field class="input" appearance="fill">
-    <mat-label>Border type</mat-label>
-    <mat-select [(ngModel)]="borderType">
-      <mat-option>None</mat-option>
-      <mat-option value="solid">Solid</mat-option>
-      <mat-option value="dashed">Dashed</mat-option>
-      <mat-option value="ridge">Ridge</mat-option>
-      <mat-option value="thick double">Thick double</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <p>Border color</p>
-  <div>
+
+  <div [hidden]="borderWidth === undefined">
+    <h2>Border Style</h2>
+
+    <p>Border width</p>
+    <div>
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Border width</mat-label>
+        <input matInput [(ngModel)]="borderWidth" type="number" />
+      </mat-form-field>
+    </div>
+    <p>Border type</p>
     <mat-form-field class="input" appearance="fill">
-      <mat-label>Input color</mat-label>
-      <input
-        matInput
-        [(ngModel)]="borderColor"
-        type="color-picker"
-        type="color"
-      />
+      <mat-label>Border type</mat-label>
+      <mat-select [(ngModel)]="borderType">
+        <mat-option>None</mat-option>
+        <mat-option value="solid">Solid</mat-option>
+        <mat-option value="dashed">Dashed</mat-option>
+        <mat-option value="ridge">Ridge</mat-option>
+        <mat-option value="thick double">Thick double</mat-option>
+      </mat-select>
     </mat-form-field>
+    <p>Border color</p>
+    <div>
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Input color</mat-label>
+        <input
+          matInput
+          [(ngModel)]="borderColor"
+          type="color-picker"
+          type="color"
+        />
+      </mat-form-field>
+    </div>
+    <button
+      (click)="getBorderStyle()"
+      class="button"
+      mat-raised-button
+      color="primary"
+    >
+      Submit border setting
+    </button>
   </div>
-  <button
-    (click)="getBorderStyle()"
-    class="button"
-    mat-raised-button
-    color="primary"
-  >
-    Submit border setting
-  </button>
 </mat-card>

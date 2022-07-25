@@ -1,42 +1,85 @@
 <div class="main">
   <mat-card>
-    <div class="form">
-      <h1>Title</h1>
-      <!-- // todo click on item set current item id -->
+    <div
+      [style.padding.px]="'10'"
+      [style.Background]="formStyle.background"
+      [style.minHeight.px]="formStyle.height"
+      [style.minWidth.px]="formStyle.width"
+      [style.borderWidth.px]="formStyle.borderWidth"
+      [style.borderColor]="formStyle.borderColor"
+      [style.borderStyle]="formStyle.borderType"
+    >
       <ul cdkDropList (cdkDropListDropped)="drop($event)" class="list">
         <li
           *ngFor="let element of currentElements"
-          (click)="setIdElement(element.id)"
+          (click)="getCurrentElement(element)"
           class="list-item"
+          [ngClass]="
+            element.id !== elementId ? 'list-item' : 'list-item_active'
+          "
         >
           <div [ngSwitch]="element.type">
-            <!-- INPUT -->
             <div *ngSwitchCase="'input'">
               <div>
-                <p>
+                <p [style.color]="element.lableColor">
                   {{ element.label }}
                 </p>
               </div>
+
               <div>
-                <input type="text" />
+                <input
+                  [style.display]="'flex'"
+                  [style.justifyContent]="element.position"
+                  [style.fontWidth]="element.fontWidth"
+                  [style.height.px]="element.height"
+                  [style.fontSize.px]="element.fontSize"
+                  [style.Background]="element.background"
+                  [style.color]="element.textColor"
+                  [style.width.px]="element.width"
+                  [placeholder]="element.label"
+                  [style.borderWidth.px]="element.borderWidth"
+                  [style.borderColor]="element.borderColor"
+                  [style.borderStyle]="element.borderType"
+                  type="text"
+                />
               </div>
             </div>
             <!-- TEXTAREA -->
             <div *ngSwitchCase="'textarea'">
               <div>
-                <p [ngStyle]="element.style">
+                <p [style.color]="element.lableColor">
                   {{ element.label }}
                 </p>
               </div>
               <div>
-                <textarea [ngStyle]="element.style" id="w3review"> </textarea>
+                <textarea
+                  [style.fontSize.px]="element.fontSize"
+                  [style.Background]="element.background"
+                  [style.color]="element.textColor"
+                  [style.position]="element.position"
+                  [style.Height.px]="element.height"
+                  [style.width.px]="element.width"
+                  [placeholder]="element.label"
+                  [style.borderWidth.px]="element.borderWidth"
+                  [style.borderColor]="element.borderColor"
+                  [style.borderStyle]="element.borderType"
+                >
+                </textarea>
               </div>
             </div>
             <!-- CHECKBOX -->
             <div *ngSwitchCase="'checkbox'">
               <div>
-                <input [ngStyle]="element.style" [type]="element.type" />
-                <span [ngStyle]="element.style">
+                <input
+                  [style.Height.px]="element.height"
+                  [style.width.px]="element.width"
+                  [style.borderWidth.px]="element.borderWidth"
+                  [style.borderColor]="element.borderColor"
+                  [style.borderStyle]="element.borderType"
+                  [style.position]="element.position"
+                  type="checkbox"
+                />
+                <span [style.color]="element.lableColor">
                   {{ element.label }}
                 </span>
               </div>
@@ -44,35 +87,84 @@
             <!-- SELECT -->
             <div *ngSwitchCase="'select'">
               <div>
-                <p [ngStyle]="element.style">
+                <p [style.color]="element.lableColor">
                   {{ element.label }}
                 </p>
               </div>
               <div>
-                <select name="select">
-                  <option value="value1">value1</option>
-                  <option value="value2">value2</option>
-                  <option value="value3">value3</option>
-                  <!-- <option *ngFor="let val of element.values.split(',')">
-                  {{ val }}
-                </option> -->
+                <select
+                  [style.fontSize.px]="element.fontSize"
+                  [style.Height.px]="element.height"
+                  [style.width.px]="element.width"
+                  [style.borderWidth.px]="element.borderWidth"
+                  [style.borderColor]="element.borderColor"
+                  [style.borderStyle]="element.borderType"
+                  [style.Background]="element.background"
+                  [style.color]="element.textColor"
+                  [style.position]="element.position"
+                  name="select"
+                >
+                  <option *ngFor="let item of element.values" [value]="item">
+                    {{ item.value }}
+                  </option>
                 </select>
               </div>
             </div>
             <!-- BUTTON -->
             <div *ngSwitchCase="'button'">
-              <button>{{ element.label }}</button>
+              <button
+                [style.fontSize.px]="element.fontSize"
+                [style.minHeight.px]="element.height"
+                [style.minWidth.px]="element.width"
+                [style.borderWidth.px]="element.borderWidth"
+                [style.borderColor]="element.borderColor"
+                [style.Background]="element.background"
+                [style.borderStyle]="element.borderType"
+                [style.color]="element.textColor"
+                [style.position]="element.position"
+              >
+                {{ element.content }}
+              </button>
             </div>
             <!-- TEXT -->
             <div *ngSwitchCase="'text'">
-              <p>
-                {{ element.type }}
+              <p
+                [style.fontSize.px]="element.fontSize"
+                [style.fontWidth]="'normal'"
+                [style.Height.px]="element.height"
+                [style.width.px]="element.width"
+                [style.Background]="element.background"
+                [style.color]="element.textColor"
+                [style.position]="element.position"
+              >
+                {{ element.content }}
               </p>
             </div>
           </div>
         </li>
       </ul>
     </div>
-    <!-- // todo block delete item  -->
   </mat-card>
+
+  <div class="buttons-block">
+    <div class="example-button-container">
+      <button
+        mat-fab
+        color="primary"
+        aria-label="Example icon button with a delete icon"
+      >
+        <mat-icon>done</mat-icon>
+      </button>
+    </div>
+    <div class="example-button-container">
+      <button
+        mat-fab
+        color="warn"
+        aria-label="Example icon button with a home icon"
+        (click)="deleteElement()"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
 </div>

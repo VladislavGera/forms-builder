@@ -21,7 +21,7 @@
     <mat-label>Input color</mat-label>
     <input
       matInput
-      [(ngModel)]="backGroundColor"
+      [(ngModel)]="background"
       type="color-picker"
       type="color"
     />
@@ -48,19 +48,22 @@
   </mat-form-field>
 
   <p>Border type</p>
-  <mat-form-field
-    class="input"
-    appearance="fill"
-  >
+  <mat-form-field class="input" appearance="fill">
     <mat-label>Border type</mat-label>
     <mat-select [(ngModel)]="borderType">
       <mat-option>None</mat-option>
-      <mat-option value="solid">Solid</mat-option>
+      <mat-option value="hidden">Hidden</mat-option>
+      <mat-option value="dotted">Dotted</mat-option>
       <mat-option value="dashed">Dashed</mat-option>
+      <mat-option value="solid">Solid</mat-option>
+      <mat-option value="double">Double</mat-option>
+      <mat-option value="groove">Groove</mat-option>
       <mat-option value="ridge">Ridge</mat-option>
-      <mat-option value="thick double">Thick double</mat-option>
+      <mat-option value="inset">Inset</mat-option>
+      <mat-option value="outset">Outset</mat-option>
     </mat-select>
   </mat-form-field>
+
   <p>Border color</p>
 
   <mat-form-field class="input" appearance="fill">
