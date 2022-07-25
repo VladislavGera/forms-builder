@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AppState } from 'src/app/store/app.state';
+import { Store } from '@ngrx/store';
+import { getForm } from './state/form.selectors';
 
 @Component({
   selector: 'app-form-style',
@@ -10,40 +13,41 @@ export class FormStyleComponent implements OnInit {
   @Input() setBorderForm: any;
   getBorderStyle!: any;
   getFormStyle!: any;
-  width: String = '';
-  height: String = '';
-  backGroundColor: String = '#000000';
-  borderWidth: String = '';
-  borderType: String = '';
-  borderColor: String = '#000000';
+  width!: String;
+  height!: String;
+  background!: String;
+  borderWidth!: String;
+  borderType!: String;
+  borderColor!: String;
 
-  constructor() {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
+    this.store.select(getForm).subscribe((form) => {
+      this.width = form.width;
+      this.height = form.height;
+      this.background = form.background;
+      this.borderWidth = form.borderWidth;
+      this.borderType = form.borderType;
+      this.borderColor = form.borderColor;
+    });
+
     this.getFormStyle = () => {
-      // add model style
       const data = {
         width: this.width,
         height: this.height,
-        backGroundColor: this.backGroundColor,
+        background: this.background,
       };
       this.setStyleForm(data);
-      this.width = '';
-      this.height = '';
-      this.backGroundColor = '#000000';
     };
 
     this.getBorderStyle = () => {
-      // add model style
       const data = {
-        width: this.borderWidth,
-        type: this.borderType,
-        color: this.borderColor,
+        borderWidth: this.borderWidth,
+        borderType: this.borderType,
+        borderColor: this.borderColor,
       };
       this.setBorderForm(data);
-      this.borderWidth = '';
-      this.borderType = '';
-      this.borderColor = '#000000';
     };
   }
 }

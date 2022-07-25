@@ -13,5 +13,3 @@ export class SelectComponent implements OnInit {
 
   ngOnInit(): void {}
 }
-
-// <!-- deleteItem!: (args: Number) => void; -->

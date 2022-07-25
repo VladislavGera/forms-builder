@@ -6,3 +6,21 @@
 .button {
   margin-bottom: 20px;
 }
+
+.buttons-block{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.input-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+mat-icon{
+  margin-left: 10px;
+}

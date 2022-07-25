@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AppState } from 'src/app/store/app.state';
+import { Store } from '@ngrx/store';
+import { getElement } from './state/element.selectors';
 
 @Component({
   selector: 'app-element-style',
@@ -10,38 +13,56 @@ export class ElementStyleComponent implements OnInit {
   @Input() setStyleElements: any;
   getBorderStyle!: any;
   getElementStyle!: any;
-  placeholder: String = '';
-  width: String = '';
-  height: String = '';
-  fontSize: String = '';
-  fontWidth: String = '';
-  iborderColornputType: String = '';
-  backGroundColor: String = '#831111';
-  borderWidth: String = '';
-  borderType: String = '';
-  borderColor: String = '#831111';
+  label!: String;
+  width!: String;
+  height!: String;
+  content!: String;
+  fontSize!: String;
+  fontWidth!: String;
+  background!: String;
+  position!: String;
+  textColor!: String;
+  lableColor!: String;
+  borderWidth!: String;
+  borderType!: String;
+  borderColor!: String;
+  values!: any[];
 
-  constructor() {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
+    this.store.select(getElement).subscribe((res) => {
+      this.width = res.element.width;
+      this.height = res.element.height;
+      this.position = res.element.position;
+      this.label = res.element.label;
+      this.content = res.element.content;
+      this.background = res.element.background;
+      this.lableColor = res.element.lableColor;
+      this.textColor = res.element.textColor;
+      this.borderWidth = res.element.borderWidth;
+      this.borderType = res.element.borderType;
+      this.borderColor = res.element.borderColor;
+      this.fontSize = res.element.fontSize;
+      this.fontWidth = res.element.fontWidth;
+      this.values = res.element.values;
+      console.log(this.background, this.lableColor, this.textColor, 'COLOR');
+    });
+
     this.getElementStyle = () => {
       const data = {
         width: this.width,
         height: this.height,
         fontSize: this.fontSize,
         fontWidth: this.fontWidth,
-        // inputType: this.inputType,
-        placeholder: this.placeholder,
-        backGroundColor: this.backGroundColor,
+        label: this.label,
+        content: this.content,
+        background: this.background,
+        textColor: this.textColor,
+        lableColor: this.lableColor,
       };
-      this.setBorderElements(data);
-      (this.width = ''),
-        (this.height = ''),
-        (this.fontSize = ''),
-        (this.fontWidth = ''),
-        // (this.inputType = ''),
-        (this.placeholder = ''),
-        (this.backGroundColor = '#000000');
+
+      this.setStyleElements(data);
     };
 
     this.getBorderStyle = () => {
@@ -50,10 +71,7 @@ export class ElementStyleComponent implements OnInit {
         borderWidth: this.borderWidth,
         borderColor: this.borderColor,
       };
-      this.setBorderElements(data);
-      (this.borderType = ''),
-        (this.borderWidth = ''),
-        (this.borderColor = '#000000');
+      this.setStyleElements(data);
     };
   }
 }
