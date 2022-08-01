@@ -9,13 +9,17 @@ import { AppState } from 'src/app/store/app.state';
   styleUrls: ['./result.component.css'],
 })
 export class ResultComponent implements OnInit {
-  @Input() currentElements: any;
-  @Input() drop: any;
   @Input() getCurrentElement: any;
+  @Input() currentElements: any;
+  @Input() deleteElement: any;
   @Input() elementId: any;
-  @Input() deleteElement: any
+
+  @Input() drop: any;
+  @Input() getOptions: any;
 
   formStyle!: any;
+  options!: any;
+  optionsValue!: any;
 
   constructor(private store: Store<AppState>) {}
 

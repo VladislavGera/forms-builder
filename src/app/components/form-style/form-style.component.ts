@@ -10,7 +10,6 @@ import { getForm } from './state/form.selectors';
 })
 export class FormStyleComponent implements OnInit {
   @Input() setStyleForm: any;
-  @Input() setBorderForm: any;
   getBorderStyle!: any;
   getFormStyle!: any;
   width!: String;
@@ -37,17 +36,11 @@ export class FormStyleComponent implements OnInit {
         width: this.width,
         height: this.height,
         background: this.background,
-      };
-      this.setStyleForm(data);
-    };
-
-    this.getBorderStyle = () => {
-      const data = {
         borderWidth: this.borderWidth,
         borderType: this.borderType,
         borderColor: this.borderColor,
       };
-      this.setBorderForm(data);
+      this.setStyleForm(data);
     };
   }
 }

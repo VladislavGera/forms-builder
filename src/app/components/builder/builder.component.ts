@@ -8,7 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class BuilderComponent implements OnInit {
   @Input() setStyleElements: any;
   @Input() setStyleForm: any;
-  @Input() setBorderForm: any;
+  @Input() elementId: any;
+  @Input() options: any;
+  @Input() element: any;
 
   constructor() {}
 

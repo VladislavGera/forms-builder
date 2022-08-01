@@ -30,17 +30,14 @@ export class ApiUserService {
 
     const localData = JSON.parse(localStorageStringData);
 
-    const id = localData.user.id;
-    const token = localData.token;
-
     return this.http
-      .get<any>(`http://localhost:8000/users/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+      .get<any>(`http://localhost:8000/users/${localData.user.id}`, {
+        headers: { Authorization: `Bearer ${localData.token}` },
       })
       .pipe(
         map((res: any) => {
-          return res;
+          return  res;
         })
       );
   }
- }
+}

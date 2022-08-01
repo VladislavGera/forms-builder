@@ -1,3 +1,5 @@
 export const initialState = {
-    elements:[]
+    elements:[],
+    options:[],
+    elementId: ''
   };

@@ -1,12 +1,10 @@
 <mat-tab-group>
   <mat-tab label="Form"
-    ><app-form-style
-      [setStyleForm]="setStyleForm"
-      [setBorderForm]="setBorderForm"
-    ></app-form-style
+    ><app-form-style [setStyleForm]="setStyleForm"></app-form-style
   ></mat-tab>
   <mat-tab label="Element">
     <app-element-style
+      [elementId]="elementId"
       [setStyleElements]="setStyleElements"
     ></app-element-style
   ></mat-tab>
