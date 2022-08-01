@@ -12,30 +12,34 @@
       <ul cdkDropList (cdkDropListDropped)="drop($event)" class="list">
         <li
           *ngFor="let element of currentElements"
-          (click)="getCurrentElement(element)"
-          class="list-item"
+          (click)="getCurrentElement(element.id)"
           [ngClass]="
             element.id !== elementId ? 'list-item' : 'list-item_active'
           "
         >
-          <div [ngSwitch]="element.type">
+          <div
+            [style.minWidth]="'100%'"
+            [style.display]="'flex'"
+            [style.justifyContent]="element.position"
+            [ngSwitch]="element.type"
+          >
             <div *ngSwitchCase="'input'">
               <div>
-                <p [style.color]="element.lableColor">
+                <p
+                  [style.color]="element.lableColor"
+                  [style.fontWeight]="element.fontWeight"
+                >
                   {{ element.label }}
                 </p>
               </div>
 
               <div>
                 <input
-                  [style.display]="'flex'"
-                  [style.justifyContent]="element.position"
-                  [style.fontWidth]="element.fontWidth"
-                  [style.height.px]="element.height"
+                  [style.minHeight.px]="element.height"
                   [style.fontSize.px]="element.fontSize"
                   [style.Background]="element.background"
                   [style.color]="element.textColor"
-                  [style.width.px]="element.width"
+                  [style.minWidth.px]="element.width"
                   [placeholder]="element.label"
                   [style.borderWidth.px]="element.borderWidth"
                   [style.borderColor]="element.borderColor"
@@ -43,11 +47,17 @@
                   type="text"
                 />
               </div>
+              <p *ngIf="element.requared" style="color: rgb(226, 74, 74); font-size: 15px">
+                *Active requared at this input
+              </p>
             </div>
             <!-- TEXTAREA -->
             <div *ngSwitchCase="'textarea'">
               <div>
-                <p [style.color]="element.lableColor">
+                <p
+                  [style.color]="element.lableColor"
+                  [style.fontWeight]="element.fontWeight"
+                >
                   {{ element.label }}
                 </p>
               </div>
@@ -57,8 +67,8 @@
                   [style.Background]="element.background"
                   [style.color]="element.textColor"
                   [style.position]="element.position"
-                  [style.Height.px]="element.height"
-                  [style.width.px]="element.width"
+                  [style.minHeight.px]="element.height"
+                  [style.minWidth.px]="element.width"
                   [placeholder]="element.label"
                   [style.borderWidth.px]="element.borderWidth"
                   [style.borderColor]="element.borderColor"
@@ -66,36 +76,47 @@
                 >
                 </textarea>
               </div>
+              <p *ngIf="element.requared" style="color: rgb(216, 71, 71); font-size: 15px">
+                *Active requared at this input
+              </p>
             </div>
             <!-- CHECKBOX -->
             <div *ngSwitchCase="'checkbox'">
-              <div>
+              <div class="checkbox">
                 <input
-                  [style.Height.px]="element.height"
-                  [style.width.px]="element.width"
+                  [style.minHeight.px]="element.height"
+                  [style.minWidth.px]="element.width"
                   [style.borderWidth.px]="element.borderWidth"
                   [style.borderColor]="element.borderColor"
                   [style.borderStyle]="element.borderType"
                   [style.position]="element.position"
                   type="checkbox"
                 />
-                <span [style.color]="element.lableColor">
+                <div
+                  [style.marginLeft]="'8px'"
+                  [style.color]="element.lableColor"
+                  [style.fontSize.px]="element.fontSize"
+                  [style.fontWeight]="element.fontWeight"
+                >
                   {{ element.label }}
-                </span>
+                </div>
               </div>
             </div>
             <!-- SELECT -->
             <div *ngSwitchCase="'select'">
               <div>
-                <p [style.color]="element.lableColor">
+                <p
+                  [style.color]="element.lableColor"
+                  [style.fontWeight]="element.fontWeight"
+                >
                   {{ element.label }}
                 </p>
               </div>
               <div>
                 <select
                   [style.fontSize.px]="element.fontSize"
-                  [style.Height.px]="element.height"
-                  [style.width.px]="element.width"
+                  [style.minHeight.px]="element.height"
+                  [style.minWidth.px]="element.width"
                   [style.borderWidth.px]="element.borderWidth"
                   [style.borderColor]="element.borderColor"
                   [style.borderStyle]="element.borderType"
@@ -104,8 +125,11 @@
                   [style.position]="element.position"
                   name="select"
                 >
-                  <option *ngFor="let item of element.values" [value]="item">
-                    {{ item.value }}
+                  <option
+                    *ngFor="let item of element.values.split(',')"
+                    [value]="item.value"
+                  >
+                    {{ item }}
                   </option>
                 </select>
               </div>
@@ -119,6 +143,7 @@
                 [style.borderWidth.px]="element.borderWidth"
                 [style.borderColor]="element.borderColor"
                 [style.Background]="element.background"
+                [style.fontWeight]="element.fontWeight"
                 [style.borderStyle]="element.borderType"
                 [style.color]="element.textColor"
                 [style.position]="element.position"
@@ -130,9 +155,9 @@
             <div *ngSwitchCase="'text'">
               <p
                 [style.fontSize.px]="element.fontSize"
-                [style.fontWidth]="'normal'"
-                [style.Height.px]="element.height"
-                [style.width.px]="element.width"
+                [style.fontWeight]="element.fontWeight"
+                [style.minHeight.px]="element.height"
+                [style.minWidth]="element.width"
                 [style.Background]="element.background"
                 [style.color]="element.textColor"
                 [style.position]="element.position"

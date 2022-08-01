@@ -16,16 +16,16 @@
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  font-weight: 300;
   max-width: 100%;
   box-sizing: border-box;
-  margin-bottom: 10px;
+  padding: 10px;
   cursor: pointer;
   transition: 0.5s;
 }
 
 .list-item_active {
-    border: rgb(89, 89, 255) dotted 1px;
+  border: rgb(89, 89, 255) dotted 1px;
+  padding: 10px;
 }
 
 .list-item:hover {
@@ -53,9 +53,21 @@ mat-card {
   justify-content: center;
 }
 
-.buttons-block{
+.buttons-block {
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
 }

@@ -5,16 +5,16 @@
       "element": {
         "label": "Input",
         "position": "center",
-        "textColor": "red",
-        "lableColor": "red",
-        "background": "green",
+        "textColor": "#6E6E6E",
+        "lableColor": "#6E6E6E",
+        "background": "#FBFBFB",
         "type": "input",
         "width": 200,
         "height": 25,
         "fontSize": 20,
         "fontWidth": "lighter",
         "borderWidth": 2,
-        "borderColor": "green",
+        "borderColor": "#6E6E6E",
         "borderType": "solid"
       }
     },
@@ -23,8 +23,8 @@
       "element": {
         "label": "textarea",
         "position": "center",
-        "textColor": "#6E6E6E ",
-        "lableColor": "#6E6E6E ",
+        "textColor": "#6E6E6E",
+        "lableColor": "#6E6E6E",
         "background": "#FBFBFB",
         "type": "textarea",
         "width": 200,
@@ -32,7 +32,7 @@
         "fontSize": 20,
         "fontWidth": "lighter",
         "borderWidth": 2,
-        "borderColor": "green",
+        "borderColor": "#6E6E6E",
         "borderType": "solid"
       }
     },
@@ -41,7 +41,7 @@
       "element": {
         "content": "button",
         "position": "center",
-        "textColor": "#6E6E6E ",
+        "textColor": "#6E6E6E",
         "background": "#FBFBFB",
         "type": "button",
         "width": 100,
@@ -49,7 +49,7 @@
         "fontSize": 20,
         "fontWidth": "lighter",
         "borderWidth": 2,
-        "borderColor": "green",
+        "borderColor": "#6E6E6E",
         "borderType": "solid"
       }
     },
@@ -58,7 +58,7 @@
       "element": {
         "label": "checkbox",
         "position": "center",
-        "lableColor": "#6E6E6E ",
+        "lableColor": "#6E6E6E",
         "type": "checkbox",
         "width": 20,
         "height": 20,
@@ -71,8 +71,7 @@
       "element": {
         "content": "text",
         "position": "center",
-        "textColor": "#6E6E6E ",
-        "background": "#FBFBFB",
+        "textColor": "#6E6E6E",
         "type": "text",
         "width": 100,
         "height": 20,
@@ -86,10 +85,10 @@
         "label": "select",
         "type": "select",
         "position": "center",
-        "textColor": "#6E6E6E ",
-        "lableColor": "#6E6E6E ",
+        "textColor": "#6E6E6E",
+        "lableColor": "#6E6E6E",
         "background": "#FBFBFB",
-        "values": [],
+        "values": "'[{value: value , id: 1 , elementId: 2}]'",
         "width": 200,
         "height": 25,
         "fontSize": 20,

@@ -1,7 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import {
-  setElement
-} from './element.action';
+import { setElement, setOptions } from './element.action';
 import { initialState } from './element.state';
 
 const _elementsReducer = createReducer(
@@ -10,6 +8,12 @@ const _elementsReducer = createReducer(
     return {
       ...state,
       element: { ...action.element },
+    };
+  }),
+  on(setOptions, (state, action) => {
+    return {
+      ...state,
+      element: { ...state.element, values: action.option.values },
     };
   })
 );

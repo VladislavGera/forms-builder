@@ -9,5 +9,6 @@ export const initialState = {
     fontWidth: 'bold',
     fontSize: 20,
     label: 'label',
+    values: '[]'
   },
 };
