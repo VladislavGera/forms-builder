@@ -89,7 +89,6 @@ export const data = {
     {
       icon: 'fact_check',
       element: {
-        requared: false,
         label: 'select',
         type: 'select',
         position: 'center',

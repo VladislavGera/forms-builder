@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AppState } from 'src/app/store/app.state';
 import { Store } from '@ngrx/store';
 import { getForm } from './state/form.selectors';
+import { updateForm } from './state/form.action';
 
 @Component({
   selector: 'app-form-style',
@@ -9,8 +10,6 @@ import { getForm } from './state/form.selectors';
   styleUrls: ['../builder/builder.component.css'],
 })
 export class FormStyleComponent implements OnInit {
-  @Input() setStyleForm: any;
-  getBorderStyle!: any;
   getFormStyle!: any;
   width!: String;
   height!: String;
@@ -32,7 +31,7 @@ export class FormStyleComponent implements OnInit {
     });
 
     this.getFormStyle = () => {
-      const data = {
+      const form = {
         width: this.width,
         height: this.height,
         background: this.background,
@@ -40,7 +39,8 @@ export class FormStyleComponent implements OnInit {
         borderType: this.borderType,
         borderColor: this.borderColor,
       };
-      this.setStyleForm(data);
+
+      this.store.dispatch(updateForm({ form }));
     };
   }
 }

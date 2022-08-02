@@ -13,3 +13,7 @@ export const getElementById = createSelector(getElementsState, (state) => {
 
   return element[0];
 });
+
+export const getElementStatus = createSelector(getElementsState, (state) => {
+  return state.elementIsActive;
+});

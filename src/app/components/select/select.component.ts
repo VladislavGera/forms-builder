@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { data } from '../elements';
 
 @Component({
   selector: 'app-select',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./select.component.css'],
 })
 export class SelectComponent implements OnInit {
-  @Input() elements: any;
+  elements: any[] = data.elements;
   @Input() drop: any;
 
   constructor() {}
