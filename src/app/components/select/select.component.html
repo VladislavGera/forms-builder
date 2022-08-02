@@ -5,14 +5,14 @@
     (cdkDropListDropped)="drop($event)"
     class="list"
   >
-    <li *ngFor="let element of elements" class="list-item" cdkDrag>
+    <li *ngFor="let item of elements" class="list-item" cdkDrag>
       <mat-icon
         class="icon"
         aria-hidden="false"
         aria-label="Example home icon"
-        >{{ element.icon }}</mat-icon
+        >{{ item.icon }}</mat-icon
       >
-      <p class="text">{{ element.element.type }}</p>
+      <p class="text">{{ item.element.type }}</p>
     </li>
   </ul>
 </div>

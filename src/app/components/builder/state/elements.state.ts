@@ -1,5 +1,5 @@
 export const initialState = {
     elements:[],
-    options:[],
-    elementId: ''
+    elementId: '',
+    elementIsActive: false
   };

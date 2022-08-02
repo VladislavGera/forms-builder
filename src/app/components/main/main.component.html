@@ -1,22 +1,8 @@
 <app-header></app-header>
-<div cdkDropListGroup >
-  <app-select [elements]="elements" [drop]="drop"></app-select>
+<div cdkDropListGroup>
+  <app-select [drop]="drop"></app-select>
   <div class="main">
-    <app-result
-      [elementId]="elementId"
-      [currentElements]="currentElements"
-      [getCurrentElement]="getCurrentElement"
-      [getOptions]="getOptions"
-      [deleteElement]="deleteElement"
-      [drop]="drop"
-      class="result"
-    ></app-result>
-    <app-builder
-      [elementId]="elementId"
-      [options]="options"
-      [setStyleElements]="setStyleElements"
-      [setStyleForm]="setStyleForm"
-      class="builder"
-    ></app-builder>
+    <app-result [drop]="drop" class="result"></app-result>
+    <app-builder class="builder"></app-builder>
   </div>
 </div>

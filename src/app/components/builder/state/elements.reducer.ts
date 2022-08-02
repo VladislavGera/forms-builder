@@ -5,9 +5,10 @@ import {
   deleteElement,
   deleteOption,
   updateOption,
-  getOptionbyId,
+  postOption,
   setEelementId,
-  deleteOptions,
+  logOutElements,
+  showResult
 } from './elements.action';
 import { initialState } from './elements.state';
 
@@ -20,13 +21,10 @@ const _elementsReducer = createReducer(
     };
   }),
   on(updateElement, (state: any, action) => {
-    let elementSetting = action.data.elementSetting;
-    let id = action.data.id;
-
-    console.log(elementSetting, id);
-
     let elements = state.elements.map((item: any) => {
-      return item.id === id ? { ...item, ...elementSetting } : item;
+      return item.id === state.elementId
+        ? { ...item, ...action.element }
+        : item;
     });
 
     return {
@@ -34,13 +32,14 @@ const _elementsReducer = createReducer(
       elements,
     };
   }),
-  on(deleteElement, (state, action) => {
+  on(deleteElement, (state) => {
     let elements = state.elements.filter((item: any) => {
-      return item.id !== action.id;
+      return item.id !== state.elementId;
     });
 
     return {
       ...state,
+      elementIsActive: false,
       elements,
     };
   }),
@@ -58,6 +57,26 @@ const _elementsReducer = createReducer(
       elements,
     };
   }),
+  on(postOption, (state: any, action: any) => {
+    const newOption = {
+      value: action.option.value,
+      id: action.option.id,
+      elementId: state.elementId,
+    };
+
+    const elementSetting = JSON.stringify([...action.option.values, newOption]);
+
+    let elements = state.elements.map((item: any) => {
+      return item.id === state.elementId
+        ? { ...item, values: elementSetting }
+        : item;
+    });
+
+    return {
+      ...state,
+      elements,
+    };
+  }),
   on(deleteOption, (state: any, action: any) => {
     let value = action.option.values.filter((value: any) => {
       return value.id !== action.option.id;
@@ -66,7 +85,7 @@ const _elementsReducer = createReducer(
     let elementSetting = { values: JSON.stringify(value) };
 
     let elements = state.elements.map((item: any) => {
-      return item.id === action.option.elementId
+      return item.id === state.elementId
         ? { ...item, ...elementSetting }
         : item;
     });
@@ -76,25 +95,25 @@ const _elementsReducer = createReducer(
       elements,
     };
   }),
-  on(deleteOptions, (state, action) => {
-    let options = state.options.filter((item: any) => {
-      return item.elementId !== action.elementId;
-    });
-
-    return {
-      ...state,
-      options,
-    };
-  }),
-  on(getOptionbyId, (state: any, action) => {
-    return {
-      ...state,
-    };
-  }),
   on(setEelementId, (state: any, action) => {
     return {
       ...state,
       elementId: action.elementId,
+      elementIsActive: true,
+    };
+  }),
+  on(logOutElements, (state: any, action) => {
+    return {
+      ...state,
+      elements: [],
+      elementId: '',
+      elementIsActive: false,
+    };
+  }),
+  on(showResult, (state: any, action) => {
+    return {
+      ...state,
+      elementIsActive: false,
     };
   })
 );

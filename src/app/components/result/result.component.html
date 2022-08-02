@@ -12,7 +12,7 @@
       <ul cdkDropList (cdkDropListDropped)="drop($event)" class="list">
         <li
           *ngFor="let element of currentElements"
-          (click)="getCurrentElement(element.id)"
+          (click)="getElementId(element.id)"
           [ngClass]="
             element.id !== elementId ? 'list-item' : 'list-item_active'
           "
@@ -47,7 +47,10 @@
                   type="text"
                 />
               </div>
-              <p *ngIf="element.requared" style="color: rgb(226, 74, 74); font-size: 15px">
+              <p
+                *ngIf="element.requared"
+                style="color: rgb(226, 74, 74); font-size: 15px"
+              >
                 *Active requared at this input
               </p>
             </div>
@@ -76,7 +79,10 @@
                 >
                 </textarea>
               </div>
-              <p *ngIf="element.requared" style="color: rgb(216, 71, 71); font-size: 15px">
+              <p
+                *ngIf="element.requared"
+                style="color: rgb(216, 71, 71); font-size: 15px"
+              >
                 *Active requared at this input
               </p>
             </div>
@@ -126,10 +132,10 @@
                   name="select"
                 >
                   <option
-                    *ngFor="let item of element.values.split(',')"
+                    *ngFor="let item of element.values"
                     [value]="item.value"
                   >
-                    {{ item }}
+                    {{ item.value }}
                   </option>
                 </select>
               </div>
@@ -177,6 +183,7 @@
         mat-fab
         color="primary"
         aria-label="Example icon button with a delete icon"
+        (click)="showResult()"
       >
         <mat-icon>done</mat-icon>
       </button>

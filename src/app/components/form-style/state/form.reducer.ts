@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { updateForm, refreshForm, updateFormBorder } from './form.action';
+import { updateForm, logOutForm } from './form.action';
 import { initialState } from './form.state';
 
 const _formReducer = createReducer(
@@ -10,9 +10,17 @@ const _formReducer = createReducer(
       form: { ...action.form },
     };
   }),
-  on(refreshForm, (state) => {
+  on(logOutForm, (state) => {
     return {
       ...state,
+      form: {
+        background: '#F2F2F2',
+        width: 500,
+        height: 50,
+        borderWidth: 2,
+        borderColor: '#C1C1C1 ',
+        borderType: 'solid',
+      },
     };
   })
 );
@@ -20,5 +28,3 @@ const _formReducer = createReducer(
 export function formReducer(state: any, action: any) {
   return _formReducer(state, action);
 }
-
-
