@@ -14,6 +14,7 @@ import { postElement } from '../builder/state/elements.action';
 export class MainComponent implements OnInit {
   drop!: (args: CdkDragDrop<string[]>) => void;
   elements: any[] = data.elements;
+  
 
   constructor(private store: Store<AppState>) {}
 
