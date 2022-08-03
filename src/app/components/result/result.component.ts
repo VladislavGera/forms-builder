@@ -6,6 +6,9 @@ import { getElements } from '../builder/state/elements.selectors';
 import { deleteElement } from '../builder/state/elements.action';
 import { setEelementId } from '../builder/state/elements.action';
 import { showResult } from '../builder/state/elements.action';
+import { FormStyle } from 'src/app/models/form.model';
+import { ElementStyle } from 'src/app/models/element.model';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-result',
@@ -13,14 +16,14 @@ import { showResult } from '../builder/state/elements.action';
   styleUrls: ['./result.component.css'],
 })
 export class ResultComponent implements OnInit {
-  @Input() drop: any;
+  @Input() drop!: (args: CdkDragDrop<string[]>) => void;
 
-  deleteElement!: any;
-  getElementId!: any;
-  currentElements!: any[];
-  formStyle!: any;
-  showResult!: any;
+  getElementId!: (elementId: string) => void;
+  deleteElement!: () => void;
+  showResult!: () => void;
 
+  currentElements!: ElementStyle[];
+  formStyle!: FormStyle;
   elementId!: string;
 
   constructor(private store: Store<AppState>) {}
@@ -32,7 +35,7 @@ export class ResultComponent implements OnInit {
 
     this.store.select(getElements).subscribe((elements) => {
       this.currentElements = elements.map((item: any) => {
-        return { ...item, values: JSON.parse(item.values) };
+        return { ...item, options: JSON.parse(item.options) };
       });
     });
 

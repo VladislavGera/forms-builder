@@ -130,7 +130,7 @@
     <div *ngIf="type === 'select'">
       <h2>Select Style</h2>
 
-      <div *ngFor="let option of values">
+      <div *ngFor="let option of options">
         <mat-form-field class="input" appearance="fill">
           <div class="input-item">
             <input matInput [(ngModel)]="option.value" type="text" />
