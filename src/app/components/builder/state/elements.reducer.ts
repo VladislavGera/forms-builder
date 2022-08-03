@@ -8,9 +8,11 @@ import {
   postOption,
   setEelementId,
   logOutElements,
-  showResult
+  showResult,
 } from './elements.action';
 import { initialState } from './elements.state';
+import { ElementStyle } from 'src/app/models/element.model';
+import { Option } from 'src/app/models/option.model';
 
 const _elementsReducer = createReducer(
   initialState,
@@ -21,7 +23,7 @@ const _elementsReducer = createReducer(
     };
   }),
   on(updateElement, (state: any, action) => {
-    let elements = state.elements.map((item: any) => {
+    let elements = state.elements.map((item: ElementStyle) => {
       return item.id === state.elementId
         ? { ...item, ...action.element }
         : item;
@@ -33,7 +35,7 @@ const _elementsReducer = createReducer(
     };
   }),
   on(deleteElement, (state) => {
-    let elements = state.elements.filter((item: any) => {
+    let elements = state.elements.filter((item: ElementStyle) => {
       return item.id !== state.elementId;
     });
 
@@ -44,9 +46,9 @@ const _elementsReducer = createReducer(
     };
   }),
   on(updateOption, (state: any, action: any) => {
-    let elementSetting = { values: JSON.stringify(action.option.values) };
+    let elementSetting = { options: JSON.stringify(action.option.options) };
 
-    let elements = state.elements.map((item: any) => {
+    let elements = state.elements.map((item: ElementStyle) => {
       return item.id === state.elementId
         ? { ...item, ...elementSetting }
         : item;
@@ -58,17 +60,17 @@ const _elementsReducer = createReducer(
     };
   }),
   on(postOption, (state: any, action: any) => {
-    const newOption = {
-      value: action.option.value,
+    const newOption: Option = {
+      value: 'option',
       id: action.option.id,
       elementId: state.elementId,
     };
 
-    const elementSetting = JSON.stringify([...action.option.values, newOption]);
+    const elementSetting = JSON.stringify([...action.option.options, newOption]);
 
-    let elements = state.elements.map((item: any) => {
+    let elements = state.elements.map((item: Option) => {
       return item.id === state.elementId
-        ? { ...item, values: elementSetting }
+        ? { ...item, options: elementSetting }
         : item;
     });
 
@@ -78,13 +80,13 @@ const _elementsReducer = createReducer(
     };
   }),
   on(deleteOption, (state: any, action: any) => {
-    let value = action.option.values.filter((value: any) => {
-      return value.id !== action.option.id;
+    let value = action.option.options.filter((item: Option) => {
+      return item.id !== action.option.id;
     });
 
-    let elementSetting = { values: JSON.stringify(value) };
+    let elementSetting = { options: JSON.stringify(value) };
 
-    let elements = state.elements.map((item: any) => {
+    let elements = state.elements.map((item: Option) => {
       return item.id === state.elementId
         ? { ...item, ...elementSetting }
         : item;
@@ -102,7 +104,7 @@ const _elementsReducer = createReducer(
       elementIsActive: true,
     };
   }),
-  on(logOutElements, (state: any, action) => {
+  on(logOutElements, (state: any) => {
     return {
       ...state,
       elements: [],
@@ -110,7 +112,7 @@ const _elementsReducer = createReducer(
       elementIsActive: false,
     };
   }),
-  on(showResult, (state: any, action) => {
+  on(showResult, (state: any) => {
     return {
       ...state,
       elementIsActive: false,

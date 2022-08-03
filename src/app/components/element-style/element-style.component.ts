@@ -8,6 +8,9 @@ import { deleteOption } from '../builder/state/elements.action';
 import { getElementById } from '../builder/state/elements.selectors';
 import { postOption } from '../builder/state/elements.action';
 import { getElementStatus } from '../builder/state/elements.selectors';
+import { ElementStyle } from 'src/app/models/element.model';
+import { Option } from 'src/app/models/option.model';
+import { OptionRequest } from 'src/app/models/optionRequest.model';
 
 @Component({
   selector: 'app-element-style',
@@ -15,19 +18,17 @@ import { getElementStatus } from '../builder/state/elements.selectors';
   styleUrls: ['../builder/builder.component.css'],
 })
 export class ElementStyleComponent implements OnInit {
-  options!: any;
-  getElementStyle!: any;
   label!: String;
-  width!: String;
-  height!: String;
+  width!: Number;
+  height!: Number;
   content!: String;
-  fontSize!: String;
+  fontSize!: Number;
   fontWeight!: String;
   background!: String;
   position!: String;
   textColor!: String;
   lableColor!: String;
-  borderWidth!: String;
+  borderWidth!: Number;
   borderColor!: String;
   borderType!: String;
   requared!: Boolean;
@@ -35,13 +36,11 @@ export class ElementStyleComponent implements OnInit {
   type!: String;
 
   postOption!: () => void;
-  updateOption!: (id: string) => void;
+  getElementStyle!: () => void;
+  updateOption!: (option: Option) => void;
   deleteOption!: (id: string) => void;
-  getStyle!: () => void;
-  optionsItems!: () => any[];
-  setSelectOptions!: any;
 
-  values!: any[];
+  options!: any[];
 
   constructor(private store: Store<AppState>) {}
 
@@ -67,12 +66,12 @@ export class ElementStyleComponent implements OnInit {
         this.fontWeight = element.fontWeight;
         this.requared = element.requared;
         this.type = element.type;
-        this.values = JSON.parse(element.values);
+        this.options = JSON.parse(element.options);
       }
     });
 
     this.getElementStyle = () => {
-      const element = {
+      const element: ElementStyle = {
         width: this.width,
         height: this.height,
         fontSize: this.fontSize,
@@ -87,34 +86,34 @@ export class ElementStyleComponent implements OnInit {
         borderWidth: this.borderWidth,
         borderType: this.borderType,
         borderColor: this.borderColor,
+        type: this.type,
       };
 
       this.store.dispatch(updateElement({ element }));
     };
 
     this.deleteOption = (id: string) => {
-      let option = {
+      let option: OptionRequest = {
         id,
-        values: this.values,
+        options: this.options,
       };
 
       this.store.dispatch(deleteOption({ option }));
     };
 
-    this.updateOption = (item: any) => {
-      let option = {
+    this.updateOption = (item: Option) => {
+      let option: OptionRequest = {
         id: item.id,
-        values: this.values,
+        options: this.options,
       };
 
       this.store.dispatch(updateOption({ option }));
     };
 
     this.postOption = () => {
-      let option = {
+      let option: OptionRequest = {
         id: uuidv4(),
-        values: this.values,
-        value: 'option',
+        options: this.options,
       };
 
       this.store.dispatch(postOption({ option }));

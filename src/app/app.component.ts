@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   user!: SetUser;
+  isAuth!: Boolean | undefined;
 
   constructor(
     private store: Store<AppState>,
@@ -21,7 +22,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.api.authUser().subscribe(async (user) => {
       this.user = {
         email: user.eamil,

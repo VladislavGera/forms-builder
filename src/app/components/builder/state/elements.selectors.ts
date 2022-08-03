@@ -1,13 +1,15 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { ElementsState } from 'src/app/models/elements.model';
+import { ElementStyle } from 'src/app/models/element.model';
 
-const getElementsState = createFeatureSelector<any>('elements');
+const getElementsState = createFeatureSelector<ElementsState>('elements');
 
 export const getElements = createSelector(getElementsState, (state) => {
   return state.elements;
 });
 
 export const getElementById = createSelector(getElementsState, (state) => {
-  let element = state.elements.filter((item: any) => {
+  let element = state.elements.filter((item: ElementStyle) => {
     return item.id === state.elementId;
   });
 

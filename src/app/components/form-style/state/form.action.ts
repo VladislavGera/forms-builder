@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { FormStyle } from 'src/app/models/form.model';
 
-export const updateForm = createAction('updateForm', props<{ form: any }>());
+export const updateForm = createAction('updateForm', props<{ form: FormStyle }>());
 export const logOutForm = createAction('logOutForm');

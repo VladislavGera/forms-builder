@@ -17,7 +17,7 @@ export const data = {
         borderWidth: 2,
         borderColor: '#6E6E6E',
         borderType: 'solid',
-        values: '[]',
+        options: '[]',
       },
     },
     {
@@ -37,7 +37,7 @@ export const data = {
         borderWidth: 2,
         borderColor: '#6E6E6E',
         borderType: 'solid',
-        values: '[]',
+        options: '[]',
       },
     },
     {
@@ -55,7 +55,7 @@ export const data = {
         borderWidth: 2,
         borderColor: '#6E6E6E',
         borderType: 'solid',
-        values: '[]',
+        options: '[]',
       },
     },
     {
@@ -69,7 +69,7 @@ export const data = {
         height: 20,
         fontSize: 20,
         fontWeight: 'lighter',
-        values: '[]',
+        options: '[]',
       },
     },
     {
@@ -83,7 +83,7 @@ export const data = {
         height: 20,
         fontSize: 20,
         fontWeight: 'lighter',
-        values: '[]',
+        options: '[]',
       },
     },
     {
@@ -95,7 +95,7 @@ export const data = {
         textColor: '#6E6E6E',
         lableColor: '#6E6E6E',
         background: '#FBFBFB',
-        values: '[{"value": "value" , "id": 1 , "elementId": 2}]',
+        options: '[{"value": "value" , "id": "1" , "elementId": "2"}]',
         width: 200,
         height: 25,
         fontSize: 20,

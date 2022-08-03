@@ -3,6 +3,7 @@ import { AppState } from 'src/app/store/app.state';
 import { Store } from '@ngrx/store';
 import { getForm } from './state/form.selectors';
 import { updateForm } from './state/form.action';
+import { FormStyle } from 'src/app/models/form.model';
 
 @Component({
   selector: 'app-form-style',
@@ -10,18 +11,18 @@ import { updateForm } from './state/form.action';
   styleUrls: ['../builder/builder.component.css'],
 })
 export class FormStyleComponent implements OnInit {
-  getFormStyle!: any;
-  width!: String;
-  height!: String;
+  getFormStyle!: () => void;
+  width!: Number;
+  height!: Number;
   background!: String;
-  borderWidth!: String;
+  borderWidth!: Number;
   borderType!: String;
   borderColor!: String;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.select(getForm).subscribe((form) => {
+    this.store.select(getForm).subscribe((form: FormStyle) => {
       this.width = form.width;
       this.height = form.height;
       this.background = form.background;
@@ -31,7 +32,7 @@ export class FormStyleComponent implements OnInit {
     });
 
     this.getFormStyle = () => {
-      const form = {
+      const form : FormStyle = {
         width: this.width,
         height: this.height,
         background: this.background,

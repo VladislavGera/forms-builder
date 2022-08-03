@@ -1,4 +1,10 @@
-export const initialState = {
+import { FormStyle } from 'src/app/models/form.model';
+
+export interface Form {
+  form: FormStyle;
+}
+
+export const initialState: Form = {
   form: {
     background: '#F2F2F2',
     width: 500,
