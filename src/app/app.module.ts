@@ -55,9 +55,7 @@ import { ElementStyleComponent } from './components/element-style/element-style.
     StoreRouterConnectingModule.forRoot(),
     BrowserAnimationsModule,
   ],
-  providers: [
-    FormBuilder,
-  ],
+  providers: [FormBuilder],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

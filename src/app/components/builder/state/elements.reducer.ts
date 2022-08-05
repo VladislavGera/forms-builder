@@ -11,8 +11,8 @@ import {
   showResult,
 } from './elements.action';
 import { initialState } from './elements.state';
-import { ElementStyle } from 'src/app/models/element.model';
-import { Option } from 'src/app/models/option.model';
+import { ElementStyle } from 'src/models/element.model';
+import { Option } from 'src/models/option.model';
 
 const _elementsReducer = createReducer(
   initialState,

@@ -7,10 +7,9 @@ import {
   UrlTree,
 } from '@angular/router';
 import { AppState } from 'src/app/store/app.state';
-// import { ApiUserService } from '../app/shared/user/api.service';
 import { Store } from '@ngrx/store';
-import { inputValueState } from '../app/models/input.model';
-import { AuthUser } from 'src/app/models/auth.model';
+import { inputValueState } from '../models/input.model';
+import { AuthUser } from 'src/models/auth.model';
 import { Observable } from 'rxjs';
 import { getUser } from '../app/components/auth/state/auth.selectors';
 

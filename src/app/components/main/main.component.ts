@@ -14,9 +14,20 @@ import { postElement } from '../builder/state/elements.action';
 export class MainComponent implements OnInit {
   drop!: (args: CdkDragDrop<string[]>) => void;
   elements: any[] = data.elements;
-  
 
   constructor(private store: Store<AppState>) {}
+
+  // drop(event: CdkDragDrop<unknown>) {
+  //   moveItemInArray(this.numbers, event.previousIndex, event.currentIndex);
+  // }
+
+  // /**
+  //  * Predicate function that only allows even numbers to be
+  //  * sorted into even indices and odd numbers at odd indices.
+  //  */
+  // sortPredicate(index: number, item: CdkDrag<number>) {
+  //   return (index + 1) % 2 === item.data % 2;
+  // }
 
   ngOnInit(): void {
     this.drop = (event: CdkDragDrop<string[]>) => {

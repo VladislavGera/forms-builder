@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { inputValueState } from 'src/app/models/input.model';
+import { inputValueState } from 'src/models/input.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiUserService } from 'src/app/shared/api.service';
 

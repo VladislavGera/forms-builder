@@ -6,8 +6,8 @@ import { getElements } from '../builder/state/elements.selectors';
 import { deleteElement } from '../builder/state/elements.action';
 import { setEelementId } from '../builder/state/elements.action';
 import { showResult } from '../builder/state/elements.action';
-import { FormStyle } from 'src/app/models/form.model';
-import { ElementStyle } from 'src/app/models/element.model';
+import { FormStyle } from 'src/models/form.model';
+import { ElementStyle } from 'src/models/element.model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { inputValueState } from 'src/app/models/input.model';
+import { inputValueState } from 'src/models/input.model';
 
 @Injectable({
   providedIn: 'root',

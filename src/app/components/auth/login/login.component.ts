@@ -5,7 +5,7 @@ import { AppState } from 'src/app/store/app.state';
 import { Router } from '@angular/router';
 import { authUser } from '../state/auth.action';
 import { Observable } from 'rxjs';
-import { inputValueState } from 'src/app/models/input.model';
+import { inputValueState } from 'src/models/input.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

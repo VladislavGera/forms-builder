@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { inputValueState } from 'src/app/models/input.model';
+import { inputValueState } from 'src/models/input.model';
 
 @Component({
   selector: 'app-form',

@@ -3,7 +3,7 @@ import { AppState } from 'src/app/store/app.state';
 import { Store } from '@ngrx/store';
 import { ApiUserService } from './shared/api.service';
 import { authUser } from './components/auth/state/auth.action';
-import { SetUser } from './models/user.model';
+import { SetUser } from '../models/user.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,10 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   user!: SetUser;
-  isAuth!: Boolean | undefined;
+  isAuth!: Boolean;
+  localStorageStringData: any = localStorage.getItem('user');
+  authUser!: () => void;
+  title: String = 'title';
 
   constructor(
     private store: Store<AppState>,
@@ -22,14 +25,20 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.api.authUser().subscribe(async (user) => {
-      this.user = {
-        email: user.eamil,
-        id: user.id,
-      };
+    this.authUser = () => {
+      if (!!JSON.parse(this.localStorageStringData)) {
+        this.api.authUser().subscribe(async (user) => {
+          this.user = {
+            email: user.eamil,
+            id: user.id,
+          };
 
-      await this.store.dispatch(authUser({ user }));
-      this.router.navigate(['main']);
-    });
+          await this.store.dispatch(authUser({ user }));
+          this.router.navigate(['main']);
+        });
+      }
+    };
+
+    this.authUser();
   }
 }

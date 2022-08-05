@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { ElementStyle } from 'src/app/models/element.model';
-import { OptionRequest } from 'src/app/models/optionRequest.model';
+import { ElementStyle } from 'src/models/element.model';
+import { OptionRequest } from 'src/models/optionRequest.model';
 
 
 export const postElement = createAction(

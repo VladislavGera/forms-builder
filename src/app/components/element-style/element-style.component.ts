@@ -8,9 +8,9 @@ import { deleteOption } from '../builder/state/elements.action';
 import { getElementById } from '../builder/state/elements.selectors';
 import { postOption } from '../builder/state/elements.action';
 import { getElementStatus } from '../builder/state/elements.selectors';
-import { ElementStyle } from 'src/app/models/element.model';
-import { Option } from 'src/app/models/option.model';
-import { OptionRequest } from 'src/app/models/optionRequest.model';
+import { ElementStyle } from 'src/models/element.model';
+import { Option } from 'src/models/option.model';
+import { OptionRequest } from 'src/models/optionRequest.model';
 
 @Component({
   selector: 'app-element-style',

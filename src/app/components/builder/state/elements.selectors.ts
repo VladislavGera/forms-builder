@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ElementsState } from 'src/app/models/elements.model';
-import { ElementStyle } from 'src/app/models/element.model';
+import { ElementsState } from 'src/models/elements.model';
+import { ElementStyle } from 'src/models/element.model';
 
 const getElementsState = createFeatureSelector<ElementsState>('elements');
 

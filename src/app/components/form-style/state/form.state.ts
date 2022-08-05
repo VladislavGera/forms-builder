@@ -1,4 +1,4 @@
-import { FormStyle } from 'src/app/models/form.model';
+import { FormStyle } from 'src/models/form.model';
 
 export interface Form {
   form: FormStyle;

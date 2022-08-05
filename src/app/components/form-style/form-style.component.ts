@@ -3,7 +3,7 @@ import { AppState } from 'src/app/store/app.state';
 import { Store } from '@ngrx/store';
 import { getForm } from './state/form.selectors';
 import { updateForm } from './state/form.action';
-import { FormStyle } from 'src/app/models/form.model';
+import { FormStyle } from 'src/models/form.model';
 
 @Component({
   selector: 'app-form-style',

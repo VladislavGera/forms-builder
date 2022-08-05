@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { updateForm, logOutForm } from './form.action';
 import { initialState } from './form.state';
-import { FormStyle } from 'src/app/models/form.model';
+import { FormStyle } from 'src/models/form.model';
 import { Form } from './form.state';
 
 const _formReducer = createReducer(
