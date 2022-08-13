@@ -6,7 +6,7 @@ import { ApiUserService } from 'src/app/shared/api.service';
 
 @Component({
   selector: 'app-registartion',
-  templateUrl: './registartion.component.html',
+  templateUrl: './registration.component.html',
   styleUrls: ['../../../app.component.css'],
 })
 export class RegistartionComponent implements OnInit {
@@ -23,7 +23,7 @@ export class RegistartionComponent implements OnInit {
 
   ngOnInit() {
     this.showAlert = (message) => {
-      this._snackBar.open(message, 'Undo', {
+      return this._snackBar.open(message, 'Undo', {
         duration: 4000,
       });
     };

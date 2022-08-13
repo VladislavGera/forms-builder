@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { data } from '../elements';
+import { data } from '../../data/elements';
 import { SelectElement } from 'src/models/selectElement.model';
 
 @Component({
