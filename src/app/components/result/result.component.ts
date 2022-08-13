@@ -22,7 +22,7 @@ export class ResultComponent implements OnInit {
   deleteElement!: () => void;
   showResult!: () => void;
 
-  currentElements!: ElementStyle[];
+  currentElements!:  Array<ElementStyle>;
   formStyle!: FormStyle;
   elementId!: string;
 

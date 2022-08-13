@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.showAlert = (message) => {
-      this._snackBar.open(message, 'Undo', {
+      return this._snackBar.open(message, 'Undo', {
         duration: 4000,
       });
     };

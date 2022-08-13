@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AppState } from 'src/app/store/app.state';
-import { Store } from '@ngrx/store';
+ import { AppState } from 'src/app/store/app.state';
+ import { Store } from '@ngrx/store';
 import { ApiUserService } from './shared/api.service';
-import { authUser } from './components/auth/state/auth.action';
+ import { authUser } from './components/auth/state/auth.action';
 import { SetUser } from '../models/user.model';
 import { Router } from '@angular/router';
 
@@ -13,10 +13,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   user!: SetUser;
-  isAuth!: Boolean;
   localStorageStringData: any = localStorage.getItem('user');
   authUser!: () => void;
-  title: String = 'title';
 
   constructor(
     private store: Store<AppState>,
@@ -33,12 +31,12 @@ export class AppComponent implements OnInit {
             id: user.id,
           };
 
-          await this.store.dispatch(authUser({ user }));
+           await this.store.dispatch(authUser({ user }));
           this.router.navigate(['main']);
-        });
+         });
       }
-    };
+    }
 
-    this.authUser();
+    this.authUser()
   }
 }

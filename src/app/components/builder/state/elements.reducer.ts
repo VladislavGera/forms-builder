@@ -34,10 +34,12 @@ const _elementsReducer = createReducer(
       elements,
     };
   }),
-  on(deleteElement, (state) => {
-    let elements = state.elements.filter((item: ElementStyle) => {
-      return item.id !== state.elementId;
-    });
+  on(deleteElement, (state: any) => {
+    let elements: Array<ElementStyle> = state.elements.filter(
+      (item: ElementStyle) => {
+        return item.id !== state.elementId;
+      }
+    );
 
     return {
       ...state,
@@ -66,7 +68,10 @@ const _elementsReducer = createReducer(
       elementId: state.elementId,
     };
 
-    const elementSetting = JSON.stringify([...action.option.options, newOption]);
+    const elementSetting = JSON.stringify([
+      ...action.option.options,
+      newOption,
+    ]);
 
     let elements = state.elements.map((item: Option) => {
       return item.id === state.elementId
