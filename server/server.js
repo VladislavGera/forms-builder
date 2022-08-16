@@ -31,7 +31,7 @@ function verifyToken(token) {
 function isAuthenticated({ email, password }) {
   return (
     userdb.users.findIndex(
-      (user) => user.email === email || user.password === password,
+      (user) => user.email === email && user.password === password,
     ) !== -1
   )
 }
@@ -128,7 +128,7 @@ server.post('/auth/login', (req, res) => {
 
   const token = createToken({ email, password })
 
-  res.status(200).json({ token, user })
+  res.status(200).json({ token, user , message: "Welcome to formbuilder" })
 })
 
 server.use(/^(?!\/auth).*$/, (req, res, next) => {
@@ -159,10 +159,7 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
   }
 })
 
-
 server.use(users)
-
-
 
 server.listen(8000, () => {
   console.log(`Run Auth API Server PORT 8000`)

@@ -6,28 +6,19 @@ import { inputValueState } from 'src/models/input.model';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
-export class FormComponent implements OnInit {
+export class FormComponent {
   @Input() userInputValue!: (data: inputValueState) => void;
-
   @Input() title!: string;
-  inputValue!: () => void;
 
   hide = true;
   email: string = '';
   password: string = '';
   data!: inputValueState;
 
-  getValue = () => {
+  getValue() {
     this.data = { email: this.email, password: this.password };
-
     this.userInputValue(this.data);
-  };
-
-  ngOnInit() {
-    this.inputValue = () => {
-      this.getValue();
-      this.email = '';
-      this.password = '';
-    };
+    this.email = '';
+    this.password = '';
   }
 }

@@ -29,7 +29,6 @@ describe('User login', () => {
       });
       expect(httpClientSpy.post).toHaveBeenCalledTimes(1);
     });
-
     it('Registration user', (done: DoneFn) => {
       httpClientSpy.post.and.returnValue(of(USER));
       apiUserService.apiRegisterUser(USER).subscribe({

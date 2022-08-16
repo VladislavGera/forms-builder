@@ -11,21 +11,18 @@ import { postElement } from '../builder/state/elements.action';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
 })
-export class MainComponent implements OnInit {
-  drop!: (args: CdkDragDrop<string[]>) => void;
+export class MainComponent {
   elements: any[] = data.elements;
 
   constructor(private store: Store<AppState>) {}
 
-  ngOnInit(): void {
-    this.drop = (event: CdkDragDrop<string[]>) => {
-      let element = {
-        ...this.elements[event.previousIndex].element,
-        id: uuidv4(),
-      };
-
-      event.previousContainer === event.container ||
-        this.store.dispatch(postElement({ element }));
+  drop = (event: CdkDragDrop<string[]>) => {
+    let element = {
+      ...this.elements[event.previousIndex].element,
+      id: uuidv4(),
     };
-  }
+
+    event.previousContainer === event.container ||
+      this.store.dispatch(postElement({ element }));
+  };
 }

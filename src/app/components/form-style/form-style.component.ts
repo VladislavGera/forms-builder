@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/store/app.state';
 import { Store } from '@ngrx/store';
 import { getForm } from './state/form.selectors';
@@ -11,7 +11,6 @@ import { FormStyle } from 'src/models/form.model';
   styleUrls: ['../builder/builder.component.css'],
 })
 export class FormStyleComponent implements OnInit {
-  getFormStyle!: () => void;
   width!: Number;
   height!: Number;
   background!: String;
@@ -20,6 +19,19 @@ export class FormStyleComponent implements OnInit {
   borderColor!: String;
 
   constructor(private store: Store<AppState>) {}
+
+  getFormStyle = () => {
+    const form: FormStyle = {
+      width: this.width,
+      height: this.height,
+      background: this.background,
+      borderWidth: this.borderWidth,
+      borderType: this.borderType,
+      borderColor: this.borderColor,
+    };
+
+    this.store.dispatch(updateForm({ form }));
+  };
 
   ngOnInit(): void {
     this.store.select(getForm).subscribe((form: FormStyle) => {
@@ -30,18 +42,5 @@ export class FormStyleComponent implements OnInit {
       this.borderType = form.borderType;
       this.borderColor = form.borderColor;
     });
-
-    this.getFormStyle = () => {
-      const form : FormStyle = {
-        width: this.width,
-        height: this.height,
-        background: this.background,
-        borderWidth: this.borderWidth,
-        borderType: this.borderType,
-        borderColor: this.borderColor,
-      };
-
-      this.store.dispatch(updateForm({ form }));
-    };
   }
 }

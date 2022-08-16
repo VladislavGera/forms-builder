@@ -18,15 +18,25 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 export class ResultComponent implements OnInit {
   @Input() drop!: (args: CdkDragDrop<string[]>) => void;
 
-  getElementId!: (elementId: string) => void;
-  deleteElement!: () => void;
-  showResult!: () => void;
-
-  currentElements!:  Array<ElementStyle>;
+  currentElements!: Array<ElementStyle>;
   formStyle!: FormStyle;
   elementId!: string;
 
   constructor(private store: Store<AppState>) {}
+
+  showResult = () => {
+    this.store.dispatch(showResult());
+    this.elementId = '';
+  };
+
+  deleteElement() {
+    this.store.dispatch(deleteElement());
+  }
+
+  getElementId = async (elementId: string) => {
+    await this.store.dispatch(setEelementId({ elementId }));
+    this.elementId = elementId;
+  };
 
   ngOnInit(): void {
     this.store.select(getForm).subscribe((res) => {
@@ -38,19 +48,5 @@ export class ResultComponent implements OnInit {
         return { ...item, options: JSON.parse(item.options) };
       });
     });
-
-    this.showResult = () => {
-      this.store.dispatch(showResult());
-      this.elementId = '';
-    };
-
-    this.deleteElement = () => {
-      this.store.dispatch(deleteElement());
-    };
-
-    this.getElementId = async (elementId: string) => {
-      await this.store.dispatch(setEelementId({ elementId }));
-      this.elementId = elementId;
-    };
   }
 }

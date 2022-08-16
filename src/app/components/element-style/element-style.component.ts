@@ -35,14 +35,58 @@ export class ElementStyleComponent implements OnInit {
   isActive!: Boolean;
   type!: String;
 
-  postOption!: () => void;
-  getElementStyle!: () => void;
-  updateOption!: (option: Option) => void;
-  deleteOption!: (id: string) => void;
-
   options!: any[];
 
   constructor(private store: Store<AppState>) {}
+
+  getElementStyle = () => {
+    const element: ElementStyle = {
+      width: this.width,
+      height: this.height,
+      fontSize: this.fontSize,
+      fontWeight: this.fontWeight,
+      label: this.label,
+      content: this.content,
+      background: this.background,
+      textColor: this.textColor,
+      lableColor: this.lableColor,
+      position: this.position,
+      requared: this.requared,
+      borderWidth: this.borderWidth,
+      borderType: this.borderType,
+      borderColor: this.borderColor,
+      type: this.type,
+    };
+
+    this.store.dispatch(updateElement({ element }));
+  };
+
+  deleteOption(id: string) {
+    let option: OptionRequest = {
+      id,
+      options: this.options,
+    };
+
+    this.store.dispatch(deleteOption({ option }));
+  }
+
+  updateOption(item: Option) {
+    let option: OptionRequest = {
+      id: item.id,
+      options: this.options,
+    };
+
+    this.store.dispatch(updateOption({ option }));
+  }
+
+  postOption() {
+    let option: OptionRequest = {
+      id: uuidv4(),
+      options: this.options,
+    };
+
+    this.store.dispatch(postOption({ option }));
+  }
 
   ngOnInit(): void {
     this.store.select(getElementStatus).subscribe((isActive) => {
@@ -69,54 +113,5 @@ export class ElementStyleComponent implements OnInit {
         this.options = JSON.parse(element.options);
       }
     });
-
-    this.getElementStyle = () => {
-      const element: ElementStyle = {
-        width: this.width,
-        height: this.height,
-        fontSize: this.fontSize,
-        fontWeight: this.fontWeight,
-        label: this.label,
-        content: this.content,
-        background: this.background,
-        textColor: this.textColor,
-        lableColor: this.lableColor,
-        position: this.position,
-        requared: this.requared,
-        borderWidth: this.borderWidth,
-        borderType: this.borderType,
-        borderColor: this.borderColor,
-        type: this.type,
-      };
-
-      this.store.dispatch(updateElement({ element }));
-    };
-
-    this.deleteOption = (id: string) => {
-      let option: OptionRequest = {
-        id,
-        options: this.options,
-      };
-
-      this.store.dispatch(deleteOption({ option }));
-    };
-
-    this.updateOption = (item: Option) => {
-      let option: OptionRequest = {
-        id: item.id,
-        options: this.options,
-      };
-
-      this.store.dispatch(updateOption({ option }));
-    };
-
-    this.postOption = () => {
-      let option: OptionRequest = {
-        id: uuidv4(),
-        options: this.options,
-      };
-
-      this.store.dispatch(postOption({ option }));
-    };
   }
 }

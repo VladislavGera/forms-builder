@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { inputValueState } from 'src/models/input.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -9,11 +9,9 @@ import { ApiUserService } from 'src/app/shared/api.service';
   templateUrl: './registration.component.html',
   styleUrls: ['../../../app.component.css'],
 })
-export class RegistartionComponent implements OnInit {
+export class RegistartionComponent {
   title: string = 'Registration';
-  userRegistration!: (args: inputValueState) => void;
   saveUser!: (args: inputValueState) => void;
-  showAlert!: (args: any) => void;
 
   constructor(
     private api: ApiUserService,
@@ -21,23 +19,21 @@ export class RegistartionComponent implements OnInit {
     private _snackBar: MatSnackBar
   ) {}
 
-  ngOnInit() {
-    this.showAlert = (message) => {
-      return this._snackBar.open(message, 'Undo', {
-        duration: 4000,
-      });
-    };
-
-    this.userRegistration = (data: inputValueState) => {
-      this.api.apiRegisterUser(data).subscribe(
-        (res) => {
-          this.showAlert(res.message);
-          this.router.navigate(['login']);
-        },
-        (err: any) => {
-          this.showAlert(err.error.message);
-        }
-      );
-    };
+  showAlert(message: string) {
+    this._snackBar.open(message, 'Undo', {
+      duration: 4000,
+    });
   }
+
+  userRegistration = (data: inputValueState) => {
+    this.api.apiRegisterUser(data).subscribe(
+      (res) => {
+        this.showAlert(res.message);
+        this.router.navigate(['login']);
+      },
+      (err: any) => {
+        this.showAlert(err.error.message);
+      }
+    );
+  };
 }

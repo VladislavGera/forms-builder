@@ -13,11 +13,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './login.component.html',
   styleUrls: ['../../../app.component.css'],
 })
-export class LoginComponent implements OnInit {
-  userLogin!: (args: inputValueState) => void;
+export class LoginComponent {
   user$!: Observable<inputValueState>;
   title: string = 'Login';
-  showAlert!: (args: any) => void;
 
   constructor(
     private store: Store<AppState>,
@@ -26,23 +24,23 @@ export class LoginComponent implements OnInit {
     private _snackBar: MatSnackBar
   ) {}
 
-  ngOnInit() {
-    this.showAlert = (message) => {
-      return this._snackBar.open(message, 'Undo', {
-        duration: 4000,
-      });
-    };
-    this.userLogin = (data) => {
-      this.api.apiLoginUser(data).subscribe(
-        async (res: any) => {
-          await this.store.dispatch(authUser({ user: res.user }));
-          this.router.navigate(['main']);
-          localStorage.setItem('user', JSON.stringify(res));
-        },
-        (err: any) => {
-          this.showAlert(err.error.message);
-        }
-      );
-    };
+  showAlert(message: string): void {
+    this._snackBar.open(message, 'Undo', {
+      duration: 4000,
+    });
   }
+
+  userLogin = (data: inputValueState) => {
+    this.api.apiLoginUser(data).subscribe(
+      async (res) => {
+        await this.store.dispatch(authUser({ user: res.user }));
+        this.router.navigate(['main']);
+        localStorage.setItem('user', JSON.stringify(res));
+        this.showAlert(res.message);
+      },
+      (err: any) => {
+        this.showAlert(err.error.message);
+      }
+    );
+  };
 }

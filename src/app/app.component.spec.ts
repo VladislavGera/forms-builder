@@ -1,24 +1,23 @@
-// import { TestBed } from '@angular/core/testing';
-// import { RouterTestingModule } from '@angular/router/testing';
-// import { AppComponent } from './app.component';
-// import { Store } from '@ngrx/store';
-// import { AppState } from 'src/app/store/app.state';
-// import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppComponent } from './app.component';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
-// describe('AppComponent', () => {
-//   beforeEach(async () => {
-//     let component: AppComponent;
-//     let storeService: any;
+describe('App component testing', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+      ],
+      providers: [AppComponent, provideMockStore({})],
+    });
+  });
 
-//     await TestBed.configureTestingModule({
-//       imports: [RouterTestingModule],
-//       declarations: [AppComponent],
-//     }).compileComponents();
-//   });
-
-//   it('should create the app', () => {
-//     const fixture = TestBed.createComponent(AppComponent);
-//     const app = fixture.componentInstance;
-//     expect(app).toBeTruthy();
-//   });
-// });
+  it('should create the app component', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+});
