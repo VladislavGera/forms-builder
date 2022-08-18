@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { inputValueState } from 'src/models/input.model';
 
 @Component({
@@ -17,7 +17,7 @@ export class FormComponent {
 
   getValue() {
     this.data = { email: this.email, password: this.password };
-    this.userInputValue(this.data);
+     this.userInputValue(this.data);
     this.email = '';
     this.password = '';
   }

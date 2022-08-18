@@ -5,11 +5,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiUserService } from 'src/app/shared/api.service';
 
 @Component({
-  selector: 'app-registartion',
+  selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['../../../app.component.css'],
 })
-export class RegistartionComponent {
+export class RegistrationComponent {
   title: string = 'Registration';
   saveUser!: (args: inputValueState) => void;
 

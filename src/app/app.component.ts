@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
- import { AppState } from 'src/app/store/app.state';
- import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.state';
+import { Store } from '@ngrx/store';
 import { ApiUserService } from './shared/api.service';
- import { authUser } from './components/auth/state/auth.action';
+import { authUser } from './components/auth/state/auth.action';
 import { SetUser } from '../models/user.model';
 import { Router } from '@angular/router';
 
@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   user!: SetUser;
   localStorageStringData: any = localStorage.getItem('user');
-  authUser!: () => void;
 
   constructor(
     private store: Store<AppState>,
@@ -22,21 +21,26 @@ export class AppComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.authUser = () => {
-      if (!!JSON.parse(this.localStorageStringData)) {
-        this.api.authUser().subscribe(async (user) => {
-          this.user = {
-            email: user.eamil,
-            id: user.id,
-          };
+  checkUserAuth(user: SetUser) {
+    this.store.dispatch(authUser({ user }));
+  }
 
-           await this.store.dispatch(authUser({ user }));
-          this.router.navigate(['main']);
-         });
-      }
+  authUser = () => {
+    if (!!JSON.parse(this.localStorageStringData)) {
+      this.api.authUser().subscribe((user) => {
+        this.user = {
+          email: user.eamil,
+          id: user.id,
+        };
+
+        this.checkUserAuth(user);
+
+        this.router.navigate(['main']);
+      });
     }
+  };
 
-    this.authUser()
+  ngOnInit(): void {
+    this.authUser();
   }
 }

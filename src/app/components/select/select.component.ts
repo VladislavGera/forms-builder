@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { data } from '../../data/elements';
 import { SelectElement } from 'src/models/selectElement.model';
 

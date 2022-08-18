@@ -1,14 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { FormComponent } from './form.component';
-import { inputValueState } from 'src/models/input.model';
 
 describe('Form component testing', () => {
-  let component: FormComponent;
-  let initialState: inputValueState = {
-    email: 'vheranin@gmail.com',
-    password: 'plkiu123',
-  };
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [],
@@ -39,10 +32,4 @@ describe('Form component testing', () => {
     const app = fixture.componentInstance;
     expect(app.hide).toEqual(true);
   });
-
-  // it(`should have as hide password text`, () => {
-  //   const fixture = TestBed.createComponent(FormComponent);
-  //   const app = fixture.componentInstance;
-  //   app.getValue();
-  // });
 });

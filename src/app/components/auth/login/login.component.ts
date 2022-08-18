@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ApiUserService } from 'src/app/shared/api.service';
 import { AppState } from 'src/app/store/app.state';
 import { Router } from '@angular/router';
 import { authUser } from '../state/auth.action';
-import { Observable } from 'rxjs';
 import { inputValueState } from 'src/models/input.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SetUser } from 'src/models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['../../../app.component.css'],
 })
 export class LoginComponent {
-  user$!: Observable<inputValueState>;
   title: string = 'Login';
 
   constructor(
@@ -30,10 +29,14 @@ export class LoginComponent {
     });
   }
 
+  authUser = (user: SetUser) => {
+    this.store.dispatch(authUser({ user }));
+  };
+
   userLogin = (data: inputValueState) => {
     this.api.apiLoginUser(data).subscribe(
-      async (res) => {
-        await this.store.dispatch(authUser({ user: res.user }));
+      (res) => {
+        this.authUser(res.user);
         this.router.navigate(['main']);
         localStorage.setItem('user', JSON.stringify(res));
         this.showAlert(res.message);

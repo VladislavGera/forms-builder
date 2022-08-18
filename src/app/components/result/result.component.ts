@@ -33,8 +33,8 @@ export class ResultComponent implements OnInit {
     this.store.dispatch(deleteElement());
   }
 
-  getElementId = async (elementId: string) => {
-    await this.store.dispatch(setEelementId({ elementId }));
+  getElementId = (elementId: string) => {
+    this.store.dispatch(setEelementId({ elementId }));
     this.elementId = elementId;
   };
 

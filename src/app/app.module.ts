@@ -17,7 +17,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { appReducer } from './store/app.state';
 import { LoginComponent } from './components/auth/login/login.component';
-import { RegistartionComponent } from './components/auth/registration/registration.component';
+import { RegistrationComponent } from './components/auth/registration/registration.component';
 import { SelectComponent } from './components/select/select.component';
 import { BuilderComponent } from './components/builder/builder.component';
 import { MainComponent } from './components/main/main.component';
@@ -31,7 +31,7 @@ import { ElementStyleComponent } from './components/element-style/element-style.
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    RegistartionComponent,
+    RegistrationComponent,
     SelectComponent,
     BuilderComponent,
     MainComponent,
