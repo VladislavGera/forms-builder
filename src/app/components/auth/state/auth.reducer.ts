@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import { logOutUser, authUser } from './auth.action';
 import { initialState } from './auth.state';
 
@@ -20,6 +20,6 @@ const _userReducer = createReducer(
   })
 );
 
-export function userReducer(state: any, action: any) {
+export function userReducer(state: any, action: Action) {
   return _userReducer(state, action);
 }

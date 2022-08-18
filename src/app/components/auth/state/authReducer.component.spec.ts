@@ -3,9 +3,9 @@ import { logOutUser, authUser } from './auth.action';
 import { SetUser } from 'src/models/user.model';
 import * as fromReducer from './auth.reducer';
 
-describe('Auth reducer', () => {
+describe('Auth reducers', () => {
   describe('authUser action', () => {
-    it('should update the state user auth', () => {
+    it('should state user auth', () => {
       let user: SetUser = {
         email: 'vheranin@gmail.com',
         id: '1',
@@ -18,7 +18,7 @@ describe('Auth reducer', () => {
     });
   });
   describe('logOutUser action', () => {
-    it('should update the state user log out', () => {
+    it('should state user log out', () => {
       const action = logOutUser();
       const state = fromReducer.userReducer(initialState, action);
       expect(state.isAuth).toEqual(false);

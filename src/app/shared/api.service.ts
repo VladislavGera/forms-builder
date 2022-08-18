@@ -36,7 +36,7 @@ export class ApiUserService {
       })
       .pipe(
         map((res: any) => {
-          return  res;
+          return res;
         })
       );
   }

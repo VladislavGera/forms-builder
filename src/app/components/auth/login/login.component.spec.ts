@@ -1,64 +1,62 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { AppState } from 'src/app/store/app.state';
+import { LoginComponent } from './login.component';
+import { authUser } from '../state/auth.action';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { LoginComponent } from './login.component';
-import { inputValueState } from 'src/models/input.model';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { AppState } from 'src/app/store/app.state';
-import { authUser } from '../state/auth.action';
-import { SetUser } from 'src/models/user.model';
-import { Store } from '@ngrx/store';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 
-describe('Login component testing', () => {
-  let store: Store;
+describe('LoginComponent', () => {
+  let fixture: ComponentFixture<LoginComponent>;
   let component: LoginComponent;
-  let initialState: inputValueState = {
+  let store: MockStore<AppState>;
+
+  let user: any = {
     email: 'vheranin@gmail.com',
     password: 'plkiu123',
-  };
-
-  let user: SetUser = {
-    email: 'vheranin@gmail.com',
     id: '1',
   };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
         MatSnackBarModule,
+        NoopAnimationsModule,
+        BrowserAnimationsModule,
       ],
-      providers: [LoginComponent, provideMockStore({})],
+      providers: [provideMockStore({})],
+      declarations: [LoginComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     });
 
-    store = TestBed.inject(Store);
-  });
-
-  it('should create the login component', () => {
-    const fixture = TestBed.createComponent(LoginComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    store = TestBed.inject(MockStore);
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
   });
 
   it(`should have as title`, () => {
-    const fixture = TestBed.createComponent(LoginComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Login');
+    expect(component.title).toEqual('Login');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(LoginComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('mat-card-title')?.textContent).toContain(
-      'LOGIN'
-    );
+  it('should create the login component', () => {
+    expect(component).toBeTruthy();
   });
 
-  // it(`should have as hide password text`, () => {
-  //   // expect(store.dispatch).toHaveBeenCalledWith(authUser({ user }));
-  // });
-  
+  it('should dispatch authUser', () => {
+    spyOn(store, 'dispatch');
+    component.authUser(user);
+    expect(store.dispatch).toHaveBeenCalledWith(authUser({ user }));
+  });
+
+  it('should dispatch showAlert message', () => {
+    component.showAlert('message');
+  });
 });
