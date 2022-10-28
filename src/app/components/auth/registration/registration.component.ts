@@ -29,7 +29,7 @@ export class RegistrationComponent {
     this.api.apiRegisterUser(data).subscribe(
       (res) => {
         this.showAlert(res.message);
-        this.router.navigate(['login']);
+        this.router.navigate(['']);
       },
       (err: any) => {
         this.showAlert(err.error.message);

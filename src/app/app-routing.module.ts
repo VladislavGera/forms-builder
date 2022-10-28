@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegistrationComponent } from './components/auth/registration/registration.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { MainComponent } from './components/main/main.component';
 import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
@@ -12,18 +9,25 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'main',
-    component: MainComponent,
-    canActivate: [AuthGuard],
+    path: 'login',
+    loadChildren: () =>
+      import('./components/auth/login/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'registration',
-    component: RegistrationComponent,
+    loadChildren: () =>
+      import('./components/auth/registration/registration.module').then(
+        (m) => m.RegistrationModule
+      ),
   },
   {
-    path: 'login',
-    component: LoginComponent,
-  },
+    path: 'main',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./components/main/main.module').then(
+        (m) => m.MainModule
+      ),
+  }
 ];
 
 @NgModule({

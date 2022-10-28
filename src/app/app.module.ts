@@ -9,37 +9,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialExampleModule } from '../../src/material.module';
 import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './components/header/header.component';
 import { FormsModule } from '@angular/forms';
-import { FormComponent } from './components/auth/form/form.component';
 import { FormBuilder } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { MainModule } from './components/main/main.module';
+
 import { environment } from 'src/environments/environment';
 import { appReducer } from './store/app.state';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegistrationComponent } from './components/auth/registration/registration.component';
-import { SelectComponent } from './components/select/select.component';
-import { BuilderComponent } from './components/builder/builder.component';
-import { MainComponent } from './components/main/main.component';
-import { ResultComponent } from './components/result/result.component';
-import { FormStyleComponent } from './components/form-style/form-style.component';
-import { ElementStyleComponent } from './components/element-style/element-style.component';
+
 
 @NgModule({
   declarations: [
-    FormComponent,
     AppComponent,
-    HeaderComponent,
-    LoginComponent,
-    RegistrationComponent,
-    SelectComponent,
-    BuilderComponent,
-    MainComponent,
-    ResultComponent,
-    FormStyleComponent,
-    ElementStyleComponent,
   ],
   imports: [
+    MainModule,
     BrowserModule,
     MaterialExampleModule,
     AppRoutingModule,

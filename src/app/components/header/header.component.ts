@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { logOutUser } from '../auth/state/auth.action';
 import { AppState } from 'src/app/store/app.state';
@@ -13,7 +19,6 @@ import { logOutElements } from '../builder/state/elements.action';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  inputValue: string = '';
   email!: String;
 
   constructor(private store: Store<AppState>, private router: Router) {}

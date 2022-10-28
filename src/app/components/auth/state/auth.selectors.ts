@@ -5,4 +5,4 @@ const getUserState = createFeatureSelector<AuthUser>('user');
 
 export const getUser = createSelector(getUserState, (state) => {
   return state;
-});
+}); 
