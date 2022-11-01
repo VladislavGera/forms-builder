@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   ActivatedRouteSnapshot,
@@ -10,22 +10,18 @@ import { AppState } from 'src/app/store/app.state';
 import { Store } from '@ngrx/store';
 import { inputValueState } from '../models/input.model';
 import { AuthUser } from 'src/models/auth.model';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { getUser } from '../app/components/auth/state/auth.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate, OnInit {
+export class AuthGuard implements CanActivate {
   user$!: Observable<inputValueState>;
   auth!: AuthUser;
+  getUserSubscription!: Subscription;
 
-  constructor(
-    private store: Store<AppState>,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -35,15 +31,18 @@ export class AuthGuard implements CanActivate, OnInit {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-
-    this.store.select(getUser).subscribe((auth) => {
+    this.getUserSubscription = this.store.select(getUser).subscribe((auth) => {
       this.auth = auth;
     });
 
     if (this.auth.isAuth) {
       return true;
     }
-      this.router.navigate(['']);
+    this.router.navigate(['']);
     return false;
+  }
+
+  ngOnDestroy() {
+    this.getUserSubscription.unsubscribe();
   }
 }

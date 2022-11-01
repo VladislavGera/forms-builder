@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AppState } from 'src/app/store/app.state';
 import { Store } from '@ngrx/store';
 import { getForm } from './state/form.selectors';
 import { updateForm } from './state/form.action';
 import { FormStyle } from 'src/models/form.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form-style',
   templateUrl: './form-style.component.html',
   styleUrls: ['../builder/builder.component.css'],
 })
-export class FormStyleComponent implements OnInit {
+export class FormStyleComponent implements OnInit, OnDestroy {
   width!: Number;
   height!: Number;
   background!: String;
   borderWidth!: Number;
   borderType!: String;
   borderColor!: String;
+  getFormSubscription!: Subscription;
 
   constructor(private store: Store<AppState>) {}
 
@@ -34,13 +36,19 @@ export class FormStyleComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.store.select(getForm).subscribe((form: FormStyle) => {
-      this.width = form.width;
-      this.height = form.height;
-      this.background = form.background;
-      this.borderWidth = form.borderWidth;
-      this.borderType = form.borderType;
-      this.borderColor = form.borderColor;
-    });
+    this.getFormSubscription = this.store
+      .select(getForm)
+      .subscribe((form: FormStyle) => {
+        this.width = form.width;
+        this.height = form.height;
+        this.background = form.background;
+        this.borderWidth = form.borderWidth;
+        this.borderType = form.borderType;
+        this.borderColor = form.borderColor;
+      });
+  }
+
+  ngOnDestroy() {
+    this.getFormSubscription.unsubscribe();
   }
 }

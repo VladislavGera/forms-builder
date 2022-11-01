@@ -14,6 +14,7 @@ import { ElementStyle } from 'src/models/element.model';
 })
 export class MainComponent {
   elements: any[] = data.elements;
+  email!: String;
 
   constructor(private store: Store<AppState>) {}
 

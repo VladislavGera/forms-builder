@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ApiUserService } from 'src/app/shared/api.service';
 import { AppState } from 'src/app/store/app.state';
@@ -7,14 +7,15 @@ import { authUser } from '../state/auth.action';
 import { inputValueState } from 'src/models/input.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SetUser } from 'src/models/user.model';
-
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['../../../app.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   title: string = 'Login';
+  loginSubscription!: Subscription;
 
   constructor(
     private store: Store<AppState>,
@@ -34,7 +35,7 @@ export class LoginComponent {
   };
 
   userLogin = (data: inputValueState) => {
-    this.api.apiLoginUser(data).subscribe(
+    this.loginSubscription = this.api.apiLoginUser(data).subscribe(
       (res) => {
         this.authUser(res.user);
         this.router.navigate(['main']);
@@ -46,4 +47,8 @@ export class LoginComponent {
       }
     );
   };
+
+  ngOnDestroy() {
+    this.loginSubscription.unsubscribe();
+  }
 }

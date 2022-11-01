@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AppState } from 'src/app/store/app.state';
 import { Store } from '@ngrx/store';
 import { v4 as uuidv4 } from 'uuid';
@@ -11,13 +11,14 @@ import { getElementStatus } from '../builder/state/elements.selectors';
 import { ElementStyle } from 'src/models/element.model';
 import { Option } from 'src/models/option.model';
 import { OptionRequest } from 'src/models/optionRequest.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-element-style',
   templateUrl: './element-style.component.html',
   styleUrls: ['../builder/builder.component.css'],
 })
-export class ElementStyleComponent implements OnInit {
+export class ElementStyleComponent implements OnInit, OnDestroy {
   label!: String;
   width!: Number;
   height!: Number;
@@ -34,6 +35,9 @@ export class ElementStyleComponent implements OnInit {
   requared!: Boolean;
   isActive!: Boolean;
   type!: String;
+
+  elementStatusSubscription!: Subscription;
+  elementByIdSubscription!: Subscription;
 
   options!: any[];
 
@@ -89,29 +93,38 @@ export class ElementStyleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(getElementStatus).subscribe((isActive) => {
-      this.isActive = isActive;
-    });
+    this.elementStatusSubscription = this.store
+      .select(getElementStatus)
+      .subscribe((isActive) => {
+        this.isActive = isActive;
+      });
 
-    this.store.select(getElementById).subscribe((element) => {
-      if (this.isActive) {
-        this.width = element.width;
-        this.height = element.height;
-        this.position = element.position;
-        this.label = element.label;
-        this.content = element.content;
-        this.background = element.background;
-        this.lableColor = element.lableColor;
-        this.textColor = element.textColor;
-        this.borderWidth = element.borderWidth;
-        this.borderType = element.borderType;
-        this.borderColor = element.borderColor;
-        this.fontSize = element.fontSize;
-        this.fontWeight = element.fontWeight;
-        this.requared = element.requared;
-        this.type = element.type;
-        this.options = JSON.parse(element.options);
-      }
-    });
+    this.elementByIdSubscription = this.store
+      .select(getElementById)
+      .subscribe((element) => {
+        if (this.isActive) {
+          this.width = element.width;
+          this.height = element.height;
+          this.position = element.position;
+          this.label = element.label;
+          this.content = element.content;
+          this.background = element.background;
+          this.lableColor = element.lableColor;
+          this.textColor = element.textColor;
+          this.borderWidth = element.borderWidth;
+          this.borderType = element.borderType;
+          this.borderColor = element.borderColor;
+          this.fontSize = element.fontSize;
+          this.fontWeight = element.fontWeight;
+          this.requared = element.requared;
+          this.type = element.type;
+          this.options = JSON.parse(element.options);
+        }
+      });
+  }
+
+  ngOnDestroy() {
+    this.elementStatusSubscription.unsubscribe();
+    this.elementByIdSubscription.unsubscribe();
   }
 }

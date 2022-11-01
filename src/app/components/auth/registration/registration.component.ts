@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { inputValueState } from 'src/models/input.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiUserService } from 'src/app/shared/api.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['../../../app.component.css'],
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnDestroy {
   title: string = 'Registration';
   saveUser!: (args: inputValueState) => void;
+  registartionSubscription!: Subscription;
 
   constructor(
     private api: ApiUserService,
@@ -26,7 +28,7 @@ export class RegistrationComponent {
   }
 
   userRegistration = (data: inputValueState) => {
-    this.api.apiRegisterUser(data).subscribe(
+    this.registartionSubscription = this.api.apiRegisterUser(data).subscribe(
       (res) => {
         this.showAlert(res.message);
         this.router.navigate(['']);
@@ -36,4 +38,8 @@ export class RegistrationComponent {
       }
     );
   };
+
+  ngOnDestroy() {
+    this.registartionSubscription.unsubscribe();
+  }
 }
